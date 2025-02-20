@@ -5,13 +5,12 @@ export interface ButtonProps  {
     children: React.ReactNode;
     //una prop è cosa succede quando clicco sul pulsante?
     onClick?: (event: React.MouseEvent) => void;
-    onSubmit?: (event: React.MouseEvent) => void;
+    type?: "submit" | "reset" | "button" | undefined
 }
 
-const CustomButton: React.FC<ButtonProps> = ({ className ='button-jas', children, onClick}) => {
+const CustomButton: React.FC<ButtonProps> = ({ className ='button-jas', children, onClick, type='',...props}) => {
     return (
-       
-        <button className={className} onClick={onClick}>{children}</button>
+        <button className={className} onClick={onClick} type={"submit"} {...props}>{children}</button>
     )
 };
 

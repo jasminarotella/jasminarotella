@@ -50,3 +50,7 @@
     background-color: var(--color3) !important;
     color: var(--font-color-secondary) !important;
 }
+
+.tablejas {
+    border: 1px solid #000;
+}
