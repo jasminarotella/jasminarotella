@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import CustomButton from "../Button";
+import GeneratedForm from "./GeneratedForm";
 
 interface FormData {
   id: number;
@@ -241,6 +242,7 @@ export default GeneratedForm;
       <CustomButton type="button" onClick={handleSaveForm}>
         Salva Form
       </CustomButton>
+      <GeneratedForm/>
     </div>
   );
 };

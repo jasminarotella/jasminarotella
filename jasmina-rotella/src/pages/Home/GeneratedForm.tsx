@@ -25,24 +25,9 @@ const GeneratedForm: React.FC = () => {
   return (
     <form style={formStyle} className='form-style'>
       <div key="1">
-  <label style={labelStyle}>a</label>
+  <label style={labelStyle}>asaddadfsf</label>
   <input type="text"  style={inputStyle}/>
 </div>
-<div key="2">
-  <label style={labelStyle}>b</label>
-  <select style={selectStyle}>
-    <option>Opzione 1</option>
-    <option>Opzione 2</option>
-  </select>
-</div>
-<div key="3">
-  <label style={labelStyle}>c</label>
-  <input type="checkbox" />
-</div>
-<div key="4">
-  <label style={labelStyle}>d</label>
-  <input type="date" />
-  </div>
     <button type='submit'>aggiungi</button>
     </form>
   );

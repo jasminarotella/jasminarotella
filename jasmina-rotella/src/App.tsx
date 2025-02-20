@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 import Home from './pages/Home/Home';
 import './pages/Home/Style.css';
-import Form from './pages/Home/Form';
 import CreaForm from './pages/Home/CreaForm';
 import GeneratedForm from './pages/Home/GeneratedForm';
 import Nav from './pages/Nav';
@@ -33,6 +32,7 @@ function App() {
         <Route path="/offertedilavoro" element={<Offertedilavoro />} />
       </Routes>
     </Router>
+    
     </div>
   );
 }

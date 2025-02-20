@@ -1,6 +1,6 @@
-const offertedilavoro: React.FC = () => {
+const Offertedilavoro: React.FC = () => {
     return (
         <div>Ciao</div>
     )
 };
-export default offertedilavoro;
+export default Offertedilavoro;
