@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    
+    --background-color: #fde9fe;
+    --font-color: black;
+    --title-font: libre-baskerville;
+    --height-background: 90vh;
+    --width-background: 80vh;
+    --border-radius-background: 25px;
+    --padding-background: 10px;
+    --font-main: montserrat;
+}
+
+.home {
+    background-color: var(--background-color);
+    color: var(--font-color);
+    font-family: var(montserrat);
+    height: var(--height-background);
+    width: var(--width-background);
+    border-radius: 25px;
+    padding: var(--padding-background);
+}
+
+.home h1,h2,h3 { 
+    font-family: var(--title-font);
+}
