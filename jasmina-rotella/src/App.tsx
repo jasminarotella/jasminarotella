@@ -8,6 +8,7 @@ import Form from './pages/Home/Form';
 import CreaForm from './pages/Home/CreaForm';
 import GeneratedForm from './pages/Home/GeneratedForm';
 import Nav from './pages/Nav';
+import Offertedilavoro from './pages/Home/OffertediLavoro/offertediLavoro';
 
 interface FormData {
   id: number;
@@ -29,6 +30,7 @@ function App() {
           element={<CreaForm setFormData={setFormData} formData={formData} />} 
         />
         <Route path="/form-preview" element={<GeneratedForm />} />
+        <Route path="/offertedilavoro" element={<Offertedilavoro />} />
       </Routes>
     </Router>
     </div>

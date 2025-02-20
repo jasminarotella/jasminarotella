@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import CustomButton from '../Button';
 import './Style.css'
 
 export interface HomeProps {
@@ -6,10 +8,13 @@ export interface HomeProps {
 }
 
 
-const Home : React.FC <HomeProps> = ({children, className}) => {
+const Home : React.FC <HomeProps> = ({className}) => {
     return (
        <div className={className}>
-        {children}
+        <Link to="/offertedilavoro">
+        <CustomButton className="button-jas">Offerte di Lavoro</CustomButton>
+        </Link>
+      
        </div>
     )
 };
