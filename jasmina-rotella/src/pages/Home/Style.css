@@ -20,6 +20,8 @@
     --padding-background: 10px;
     --font-main: montserrat;
     --button-color: var(--color5);
+    --margin-label: 20px;
+    --margin-input: 5px;
 }
 
 .home {
@@ -54,3 +56,4 @@
 .tablejas {
     border: 1px solid #000;
 }
+
