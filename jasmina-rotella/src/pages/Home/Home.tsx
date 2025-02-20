@@ -6,7 +6,7 @@ export interface HomeProps {
 }
 
 
-const Home : React.FC <HomeProps> = ({children, className = "home"}) => {
+const Home : React.FC <HomeProps> = ({children, className}) => {
     return (
        <div className={className}>
         {children}

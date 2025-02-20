@@ -1,12 +1,14 @@
 import './App.css'
-import Home from './pages/Home'
+import CustomButton from './pages/Button';
+import Home from './pages/Home/Home';
 
 function App() {
   return (
     <>
     <Home className='home'>
-      <h1>Ciao</h1>
-      <div>ciao</div>
+      <h1>Titolo</h1>
+      <div>Div</div>
+      <CustomButton className={'button-jas'} >Ciao</CustomButton>
     </Home>
      </>
   )

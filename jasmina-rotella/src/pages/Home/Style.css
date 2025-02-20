@@ -1,20 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
+    --color1: #F4F4ED;
+    --color2: #72DDF7;
+    --color3: #8093F1;
+    --color4: #B388EB;
+    --color5: #F7AEF8;
+    --font-color-main: black;
+    --font-color-secondary: #F4F4ED;
     
-    --background-color: #fde9fe;
-    --font-color: black;
+    --background-color: var(--color1);
     --title-font: libre-baskerville;
     --height-background: 90vh;
     --width-background: 80vh;
     --border-radius-background: 25px;
     --padding-background: 10px;
     --font-main: montserrat;
+    --button-color: var(--color5);
 }
 
 .home {
     background-color: var(--background-color);
-    color: var(--font-color);
+    color: var(--font-color-main);
     font-family: var(montserrat);
     height: var(--height-background);
     width: var(--width-background);
@@ -24,4 +31,9 @@
 
 .home h1,h2,h3 { 
     font-family: var(--title-font);
+}
+
+.button-jas {
+    background-color: var(--button-color) !important;
+    color: var(--font-color-secondary) !important;
 }
