@@ -23,8 +23,8 @@
     background-color: var(--background-color);
     color: var(--font-color-main);
     font-family: var(montserrat);
-    height: var(--height-background);
-    width: var(--width-background);
+    min-height: var(--height-background);
+    min-width: var(--width-background);
     border-radius: var(--border-radius-background);
     padding: var(--padding-background);
 }
@@ -36,4 +36,7 @@
 .button-jas {
     background-color: var(--button-color) !important;
     color: var(--font-color-secondary) !important;
+}
+.button-jas:hover {
+    background-color: black !important;
 }

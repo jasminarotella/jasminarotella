@@ -1,6 +1,7 @@
 import './App.css'
 import CustomButton from './pages/Button';
 import Home from './pages/Home/Home';
+import './pages/Home/Style.css'
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
     <Home className='home'>
       <h1>Titolo</h1>
       <div>Div</div>
-      <CustomButton className={'button-jas'} >Ciao</CustomButton>
+      <CustomButton className='button-jas'>Ciao</CustomButton>
     </Home>
      </>
   )

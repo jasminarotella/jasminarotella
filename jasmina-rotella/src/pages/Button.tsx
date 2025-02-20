@@ -1,16 +1,15 @@
-import Button, {ButtonProps} from '@mui/material/Button';
-import './Home/Style.css'
+import './Home/Style.css'; // Import del CSS
 
-export interface CustomButtonProps extends ButtonProps{
-    className: string,
-    children: React.ReactNode,
+export interface ButtonProps  {
+    className?: string; 
+    children: React.ReactNode;
 }
 
-const CustomButton: React.FC <CustomButtonProps> = ({className = "button-jas", children}) => {
+const CustomButton: React.FC<ButtonProps> = ({ children }) => {
     return (
-             <>
-            <Button className={className}> {children} </Button>
-            </>
+       
+        <button className='button-jas'>{children}</button>
     )
 };
+
 export default CustomButton;
