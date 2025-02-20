@@ -15,6 +15,19 @@ interface CreaFormProps {
 const CreaForm: React.FC<CreaFormProps> = ({ setFormData, formData }) => {
   const [nome, setNome] = useState("");
   const [tipo, setTipo] = useState("input");
+  const stylePage: React.CSSProperties = {
+    backgroundColor: 'var(--color2)',
+    borderRadius: 'var(--border-radius)',
+    padding: '10px',
+  };
+
+  const styleInput: React.CSSProperties = {
+    padding: '5px',
+    borderRadius: 'var(--border-radius-background)',
+    margin: 'var(--margin-input)',
+    
+  };
+
 
   // Stili usati per l'anteprima (stessi del file generato)
   const formStyle: React.CSSProperties = {
@@ -61,7 +74,7 @@ const CreaForm: React.FC<CreaFormProps> = ({ setFormData, formData }) => {
         if (field.tipo === "input") {
           return `<div key="${field.id}">
   <label style={labelStyle}>${field.nome}</label>
-  <input type="text" />
+  <input type="text"  style={inputStyle}/>
 </div>`;
         } else if (field.tipo === "select") {
           return `<div key="${field.id}">
@@ -80,8 +93,8 @@ const CreaForm: React.FC<CreaFormProps> = ({ setFormData, formData }) => {
           return `<div key="${field.id}">
   <label style={labelStyle}>${field.nome}</label>
   <input type="date" />
-  <button type='submit'>aggiungi</button>
-</div>`;
+  </div>
+  `;
         }
         return "";
       })
@@ -94,12 +107,17 @@ const GeneratedForm: React.FC = () => {
     backgroundColor: 'var(--color2)',
     borderRadius: 'var(--border-radius)',
     padding: '10px',
+    maxWidth: '300px',
   };
 
   const labelStyle: React.CSSProperties = {
     marginRight: 'var(--margin-label)',
+    
   };
-
+  const inputStyle: React.CSSProperties = {
+      marginRight: 'var(--margin-label)',
+      borderRadius: 'var(--border-radius'
+    };
   const selectStyle: React.CSSProperties = {
     padding: '5px',
     borderRadius: 'var(--border-radius-background)',
@@ -109,6 +127,7 @@ const GeneratedForm: React.FC = () => {
   return (
     <form style={formStyle} className='form-style'>
       ${fieldsCode}
+    <button type='submit'>aggiungi</button>
     </form>
   );
 };
@@ -181,6 +200,7 @@ export default GeneratedForm;
               return null;
           }
         })}
+        <button type='submit'>aggiungi</button>
       </form>
     );
   };
@@ -193,13 +213,16 @@ export default GeneratedForm;
           <input
             type="text"
             value={nome}
+            style={styleInput}
             onChange={(e) => setNome(e.target.value)}
           />
         </label>
 
         <label>
           Tipo:
-          <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
+          <select value={tipo} 
+          style={styleInput}
+          onChange={(e) => setTipo(e.target.value)}>
             <option value="input">Input</option>
             <option value="select">Select</option>
             <option value="checkbox">Checkbox</option>

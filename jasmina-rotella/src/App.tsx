@@ -20,11 +20,11 @@ function App() {
   return (
     <>
       <Home className='home'>
-        <h1>Titolo</h1>
-        <div>Div</div>
+        <h1>Crea il tuo Form</h1>
+        <div> Scegli i campi e il tipo 
         <CreaForm setFormData={setFormData} formData={formData} /> {/* Passo lo stato */}
+        </div>
         <GeneratedForm/>
-
       </Home>
     </>
   );
