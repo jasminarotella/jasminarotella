@@ -1,3 +1,5 @@
+// @ts-ignore
+
 import { Link } from 'react-router-dom';
 import CustomButton from '../Button';
 import './Style.css'

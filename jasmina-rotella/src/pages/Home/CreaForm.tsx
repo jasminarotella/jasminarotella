@@ -1,3 +1,5 @@
+// @ts-ignore
+
 import { FormEvent, useState } from "react";
 import CustomButton from "../Button";
 import GeneratedForm from "./GeneratedForm";
