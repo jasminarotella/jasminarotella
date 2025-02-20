@@ -1,15 +1,15 @@
 import './Style.css'
 
 export interface HomeProps {
-    children: React.ReactNode
+    children: React.ReactNode,
+    className : string
 }
 
 
-const Home : React.FC <HomeProps> = () => {
+const Home : React.FC <HomeProps> = ({children, className = "home"}) => {
     return (
-       <div className="home">
-            <h1>Ciao</h1>
-            <div>Ciao</div>
+       <div className={className}>
+        {children}
        </div>
     )
 };

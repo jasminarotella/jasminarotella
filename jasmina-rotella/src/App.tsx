@@ -4,7 +4,10 @@ import Home from './pages/Home'
 function App() {
   return (
     <>
-    <Home children/>
+    <Home className='home'>
+      <h1>Ciao</h1>
+      <div>ciao</div>
+    </Home>
      </>
   )
 }

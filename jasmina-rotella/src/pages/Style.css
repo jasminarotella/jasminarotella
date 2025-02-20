@@ -18,7 +18,7 @@
     font-family: var(montserrat);
     height: var(--height-background);
     width: var(--width-background);
-    border-radius: 25px;
+    border-radius: var(--border-radius-background);
     padding: var(--padding-background);
 }
 
