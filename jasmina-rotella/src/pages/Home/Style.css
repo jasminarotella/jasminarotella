@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     --color1: #F4F4ED;
     --color2: #72DDF7;
     --color3: #8093F1;
@@ -8,12 +11,12 @@
     --color5: #F7AEF8;
     --font-color-main: black;
     --font-color-secondary: #F4F4ED;
-    
     --background-color: var(--color1);
     --title-font: libre-baskerville;
     --height-background: 90vh;
     --width-background: 80vh;
     --border-radius-background: 25px;
+    --border-radius: 15px;
     --padding-background: 10px;
     --font-main: montserrat;
     --button-color: var(--color5);
@@ -22,7 +25,7 @@
 .home {
     background-color: var(--background-color);
     color: var(--font-color-main);
-    font-family: var(montserrat);
+    font-family: var(--font-main);
     min-height: var(--height-background);
     min-width: var(--width-background);
     border-radius: var(--border-radius-background);
@@ -35,8 +38,15 @@
 
 .button-jas {
     background-color: var(--button-color) !important;
-    color: var(--font-color-secondary) !important;
+    color: var(--font-color-main) !important;
+    border-radius: var(--border-radius);
+    padding: 5px;
+    margin: 10px;
+    min-width: 150px;
+    min-height: 35px;
+    border: none;
 }
 .button-jas:hover {
-    background-color: black !important;
+    background-color: var(--color3) !important;
+    color: var(--font-color-secondary) !important;
 }

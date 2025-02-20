@@ -4,12 +4,15 @@ import Home from './pages/Home/Home';
 import './pages/Home/Style.css'
 
 function App() {
+  const clickButton = () => {
+    console.log("ciao")
+  }
   return (
     <>
     <Home className='home'>
       <h1>Titolo</h1>
       <div>Div</div>
-      <CustomButton className='button-jas'>Ciao</CustomButton>
+      <CustomButton onClick={clickButton}>Custom Button</CustomButton>
     </Home>
      </>
   )
