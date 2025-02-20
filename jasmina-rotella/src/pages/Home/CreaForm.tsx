@@ -15,11 +15,6 @@ interface CreaFormProps {
 const CreaForm: React.FC<CreaFormProps> = ({ setFormData, formData }) => {
   const [nome, setNome] = useState("");
   const [tipo, setTipo] = useState("input");
-  const stylePage: React.CSSProperties = {
-    backgroundColor: 'var(--color2)',
-    borderRadius: 'var(--border-radius)',
-    padding: '10px',
-  };
 
   const styleInput: React.CSSProperties = {
     padding: '5px',

@@ -1,10 +1,13 @@
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Corretto import
+import { useState } from 'react';
+
 import Home from './pages/Home/Home';
 import './pages/Home/Style.css';
 import Form from './pages/Home/Form';
 import CreaForm from './pages/Home/CreaForm';
-import { useState } from 'react';
 import GeneratedForm from './pages/Home/GeneratedForm';
+import Nav from './pages/Nav';
 
 interface FormData {
   id: number;
@@ -12,21 +15,23 @@ interface FormData {
   tipo: string;
 }
 
-
-
 function App() {
-  const [formData, setFormData] = useState<FormData[]>([]); // Stato per i campi creati
+  const [formData, setFormData] = useState<FormData[]>([]);
 
   return (
-    <>
-      <Home className='home'>
-        <h1>Crea il tuo Form</h1>
-        <div> Scegli i campi e il tipo 
-        <CreaForm setFormData={setFormData} formData={formData} /> {/* Passo lo stato */}
-        </div>
-        <GeneratedForm/>
-      </Home>
-    </>
+    <div className='home'>
+    <Router>
+      <Nav className="navbar" />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route 
+          path="/creaform" 
+          element={<CreaForm setFormData={setFormData} formData={formData} />} 
+        />
+        <Route path="/form-preview" element={<GeneratedForm />} />
+      </Routes>
+    </Router>
+    </div>
   );
 }
 

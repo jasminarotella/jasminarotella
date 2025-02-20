@@ -38,10 +38,11 @@
     font-family: var(--title-font);
 }
 
-.button-jas {
+.button-jas{
     background-color: var(--button-color) !important;
     color: var(--font-color-main) !important;
     border-radius: var(--border-radius);
+    text-decoration: none;
     padding: 5px;
     margin: 10px;
     min-width: 150px;
@@ -56,4 +57,5 @@
 .tablejas {
     border: 1px solid #000;
 }
+
 
