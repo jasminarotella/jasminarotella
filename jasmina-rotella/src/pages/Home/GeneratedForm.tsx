@@ -1,3 +1,5 @@
+// @ts-ignore
+
 import React from 'react';
 
 const GeneratedForm: React.FC = () => {
