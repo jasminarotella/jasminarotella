@@ -1,8 +1,7 @@
 // @ts-ignore
 import React from 'react';
 
-const GeneratedForm: React.FC = () => {
-  const formStyle: React.CSSProperties = {
+export  const formStyle: React.CSSProperties = {
     backgroundColor: 'var(--color2)',
     borderRadius: 'var(--border-radius)',
     padding: '10px',
@@ -22,6 +21,7 @@ const GeneratedForm: React.FC = () => {
     borderRadius: 'var(--border-radius-background)',
     margin: 'var(--margin-input)',
   };
+const GeneratedForm: React.FC = () => {
 
   return (
     <form style={formStyle} className='form-style'>

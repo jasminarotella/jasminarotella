@@ -7,7 +7,8 @@ import './pages/Home/Style.css';
 import CreaForm from './pages/Home/CreaForm';
 import GeneratedForm from './pages/Home/GeneratedForm';
 import Nav from './pages/Nav';
-import Simulazioni from './pages/Home/Simulazioni/Simulazioni';
+import Simulazioni from './pages/Home/Simulazioni/HomeSimulazioni';
+import OffertediLavoro from './pages/Home/Simulazioni/offertediLavoro';
 
 interface FormData {
   id: number;
@@ -30,6 +31,7 @@ function App() {
         />
         <Route path="/form-preview" element={<GeneratedForm />} />
         <Route path="/simulazioni" element={<Simulazioni />} />
+        <Route path="/offertedilavoro" element={<OffertediLavoro />} />
       </Routes>
     </Router>
     </div>

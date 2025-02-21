@@ -2,7 +2,7 @@
 
 import { Link } from 'react-router-dom';
 import './Style.css'
-import AccordionMenu from './AccordionComponents';
+import AccordionMenuComponents from './AccordionMenus/AccordionComponents';
 
 export interface HomeProps {
     children?: React.ReactNode,
@@ -13,7 +13,7 @@ export interface HomeProps {
 const Home : React.FC <HomeProps> = ({className}) => {
     return (
        <div className={className}>
-        <AccordionMenu/>
+        <AccordionMenuComponents/>
        </div>
     )
 };

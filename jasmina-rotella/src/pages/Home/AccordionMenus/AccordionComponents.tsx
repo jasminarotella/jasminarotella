@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import GeneratedForm from './GeneratedForm';
-import CustomButton from '../Button';
-import CreaForm from './CreaForm';
+import GeneratedForm from '../GeneratedForm';
+import CustomButton from '../../Button';
+import CreaForm from '../CreaForm';
 interface FormData {
     id: number;
     nome: string;
@@ -12,7 +12,7 @@ interface FormData {
   }
 
 
-export const  AccordionMenu: React.FC = () => {
+export const  AccordionMenuComponents: React.FC = () => {
     const [formData, setFormData] = useState<FormData[]>([]);
     
   return (
@@ -55,4 +55,4 @@ export const  AccordionMenu: React.FC = () => {
   
   );
 };
-export default AccordionMenu;
+export default AccordionMenuComponents;
