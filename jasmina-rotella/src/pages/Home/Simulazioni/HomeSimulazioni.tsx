@@ -4,12 +4,12 @@ import MenuSimulazioni from "./MenuSimulazioni";
 
 
 
-const Simulazioni : React.FC  = () => {
+const Simulazioni: React.FC = () => {
     return (
-       <div>
-        <h1>Simulazioni con Soluzione</h1>
-        <MenuSimulazioni/>
-       </div>
+        <div>
+            <h1>Simulazioni con Soluzione</h1>
+            <MenuSimulazioni />
+        </div>
     )
 };
 export default Simulazioni;

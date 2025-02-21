@@ -6,24 +6,24 @@ import GeneratedForm from '../GeneratedForm';
 import CustomButton from '../../Button';
 import CreaForm from '../CreaForm';
 interface FormData {
-    id: number;
-    nome: string;
-    tipo: string;
-  }
+  id: number;
+  nome: string;
+  tipo: string;
+}
 
 
-export const  AccordionMenuComponents: React.FC = () => {
-    const [formData, setFormData] = useState<FormData[]>([]);
-    
+export const AccordionMenuComponents: React.FC = () => {
+  const [formData, setFormData] = useState<FormData[]>([]);
+
   return (
-  
-    <div className='accordion'>
+
+    <div className='accordion-components'>
       <Accordion>
         <AccordionSummary
           aria-controls="panel1-content"
           id="panel1-header"
         >
-            Button
+          Button
         </AccordionSummary>
         <AccordionDetails>
           <CustomButton>Custom Button</CustomButton>
@@ -34,7 +34,7 @@ export const  AccordionMenuComponents: React.FC = () => {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-            Form AutoGenerato
+          Form AutoGenerato
         </AccordionSummary>
         <AccordionDetails>
           <GeneratedForm />
@@ -45,14 +45,14 @@ export const  AccordionMenuComponents: React.FC = () => {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-            Generatore di Form
+          Generatore di Form
         </AccordionSummary>
         <AccordionDetails>
           <CreaForm setFormData={setFormData} formData={formData} />
         </AccordionDetails>
       </Accordion>
     </div>
-  
+
   );
 };
 export default AccordionMenuComponents;

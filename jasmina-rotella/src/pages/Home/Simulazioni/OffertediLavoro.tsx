@@ -66,7 +66,7 @@ const OffertediLavoro: React.FC = () => {
     );
     setOffertaDaModificare(null); // Chiude il form di modifica
   };
-  
+
   const [input, setInput] = useState("");
 
   // Filtriamo le offerte in base all'input dell'utente
@@ -76,8 +76,8 @@ const OffertediLavoro: React.FC = () => {
   return (
     <div>
       <h2>Home - Offerte di Lavoro</h2>
-      <CustomButton onClick={()=> setShowAdd(prev => !prev)}>Aggiungi Offerta</CustomButton>
-      {showAdd &&  <InputOfferta onSubmit={aggiungiOfferta} />}
+      <CustomButton onClick={() => setShowAdd(prev => !prev)}>Aggiungi Offerta</CustomButton>
+      {showAdd && <InputOfferta onSubmit={aggiungiOfferta} />}
       <input
         type="text"
         placeholder="Cerca un'offerta..."
@@ -104,23 +104,23 @@ const OffertediLavoro: React.FC = () => {
               <td>{offerta.dataInserimento}</td>
               <td>{offerta.smartWorking ? "Sì" : "No"}</td>
               <td>{offerta.contratto}</td>
-                <button onClick={() => iniziaModifica(offerta)}>Modifica</button>
-                {offertaDaModificare && (
-              <td>
-        <div>
-          <h3>Modifica Offerta</h3>
-          <InputOfferta onSubmit={aggiornaOfferta} initialData={offertaDaModificare} />
-        </div>
-              </td>
-      )}
-                <button onClick={() => eliminaOfferta(offerta.id)}>Elimina</button>
+              <button onClick={() => iniziaModifica(offerta)}>Modifica</button>
+              {offertaDaModificare && (
+                <td>
+                  <div>
+                    <h3>Modifica Offerta</h3>
+                    <InputOfferta onSubmit={aggiornaOfferta} initialData={offertaDaModificare} />
+                  </div>
+                </td>
+              )}
+              <button onClick={() => eliminaOfferta(offerta.id)}>Elimina</button>
             </tr>
           ))}
         </tbody>
       </table>
-     
+
       {/* Mostra il form solo se c'è un'offerta da modificare */}
-      
+
     </div>
   );
 };

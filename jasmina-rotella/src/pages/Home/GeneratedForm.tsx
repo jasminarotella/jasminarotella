@@ -11,26 +11,26 @@ export const formStyle: React.CSSProperties = {
 
 const labelStyle: React.CSSProperties = {
   marginRight: 'var(--margin-label)',
-  
+
 };
 const inputStyle: React.CSSProperties = {
-    marginRight: 'var(--margin-label)',
-    borderRadius: 'var(--border-radius'
-  };
-const selectStyle: React.CSSProperties = {
-  padding: '5px',
-  borderRadius: 'var(--border-radius-background)',
-  margin: 'var(--margin-input)',
+  marginRight: 'var(--margin-label)',
+  borderRadius: 'var(--border-radius'
 };
+// const selectStyle: React.CSSProperties = {
+//   padding: '5px',
+//   borderRadius: 'var(--border-radius-background)',
+//   margin: 'var(--margin-input)',
+// };
 const GeneratedForm: React.FC = () => {
 
   return (
     <form style={formStyle} className='form-style'>
       <div key="1">
-  <label style={labelStyle}>asaddadfsf</label>
-  <input type="text"  style={inputStyle}/>
-</div>
-    <button type='submit'>aggiungi</button>
+        <label style={labelStyle}>asaddadfsf</label>
+        <input type="text" style={inputStyle} />
+      </div>
+      <button type='submit'>aggiungi</button>
     </form>
   );
 };

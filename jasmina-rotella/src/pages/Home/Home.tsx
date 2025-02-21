@@ -10,11 +10,11 @@ export interface HomeProps {
 }
 
 
-const Home : React.FC <HomeProps> = ({className}) => {
+const Home: React.FC<HomeProps> = ({ className }) => {
     return (
-       <div className={className}>
-        <AccordionMenuComponents/>
-       </div>
+        <div className={className}>
+            <AccordionMenuComponents />
+        </div>
     )
 };
 export default Home;

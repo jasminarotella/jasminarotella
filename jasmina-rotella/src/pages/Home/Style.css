@@ -34,11 +34,13 @@
     padding: var(--padding-background);
 }
 
-.home h1,h2,h3 { 
+.home h1,
+h2,
+h3 {
     font-family: var(--title-font);
 }
 
-.button-jas{
+.button-jas {
     background-color: var(--button-color) !important;
     color: var(--font-color-main) !important;
     border-radius: var(--border-radius);
@@ -49,6 +51,7 @@
     min-height: 35px;
     border: none;
 }
+
 .button-jas:hover {
     background-color: var(--color3) !important;
     color: var(--font-color-secondary) !important;
@@ -59,13 +62,32 @@
 }
 
 
-.MuiAccordionDetails-root {
+.accordion-components .MuiAccordionDetails-root {
     border-radius: var(--border-radius-background);
-    background-color:var(--color1) !important;
+    background-color: white !important;
     padding: 10px !important;
 }
 
-.MuiAccordion-region {
-    background-color:var(--color5) !important;
+.accordion-components .MuiAccordion-region {
+    background-color: var(--color3) !important;
     padding: 5px;
+}
+
+.accordion-components .MuiAccordionSummary-content {
+    min-height: 50px;
+    font-size: 1.8em;
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* .accordion-components .MuiAccordion-root:hover {
+    scale: 1.1;
+    transition: 0.5s;
+} */
+
+.accordion-components {
+    place-self: center;
+    max-width: 80%;
 }

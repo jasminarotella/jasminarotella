@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { OffertaDiLavoroProp } from "./offertediLavoro";
+import { OffertaDiLavoroProp } from "./OffertediLavoro";
 import CustomButton from "../../Button";
 
 interface InputOffertaProps {
@@ -16,7 +16,7 @@ const InputOfferta: React.FC<InputOffertaProps> = ({ onSubmit, initialData }) =>
       descrizioneBreve: "",
       azienda: "",
       provincia: "",
-      dataInserimento: new Date().toISOString().split("T")[0], 
+      dataInserimento: new Date().toISOString().split("T")[0],
       smartWorking: false,
       contratto: "",
     }
@@ -90,7 +90,7 @@ const InputOfferta: React.FC<InputOffertaProps> = ({ onSubmit, initialData }) =>
             type="date"
             name="dataInserimento"
             value={formData.dataInserimento}
-            onChange={handleChange} 
+            onChange={handleChange}
             required
           />
         </label>
@@ -101,7 +101,7 @@ const InputOfferta: React.FC<InputOffertaProps> = ({ onSubmit, initialData }) =>
             type="checkbox"
             name="smartWorking"
             checked={formData.smartWorking}
-            onChange={handleChange} 
+            onChange={handleChange}
           />
         </label>
 

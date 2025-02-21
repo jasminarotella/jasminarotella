@@ -2,7 +2,6 @@
 
 import { FormEvent, useState } from "react";
 import CustomButton from "../Button";
-import GeneratedForm from "./GeneratedForm";
 
 interface FormData {
   id: number;
@@ -23,7 +22,7 @@ const CreaForm: React.FC<CreaFormProps> = ({ setFormData, formData }) => {
     padding: '5px',
     borderRadius: 'var(--border-radius-background)',
     margin: 'var(--margin-input)',
-    
+
   };
 
 
@@ -218,9 +217,9 @@ export default GeneratedForm;
 
         <label>
           Tipo:
-          <select value={tipo} 
-          style={styleInput}
-          onChange={(e) => setTipo(e.target.value)}>
+          <select value={tipo}
+            style={styleInput}
+            onChange={(e) => setTipo(e.target.value)}>
             <option value="input">Input</option>
             <option value="select">Select</option>
             <option value="checkbox">Checkbox</option>
@@ -244,7 +243,6 @@ export default GeneratedForm;
       <CustomButton type="button" onClick={handleSaveForm}>
         Salva Form
       </CustomButton>
-      <GeneratedForm/>
     </div>
   );
 };

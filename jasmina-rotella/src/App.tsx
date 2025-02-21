@@ -8,7 +8,7 @@ import CreaForm from './pages/Home/CreaForm';
 import GeneratedForm from './pages/Home/GeneratedForm';
 import Nav from './pages/Nav';
 import Simulazioni from './pages/Home/Simulazioni/HomeSimulazioni';
-import OffertediLavoro from './pages/Home/Simulazioni/offertediLavoro';
+import OffertediLavoro from './pages/Home/Simulazioni/OffertediLavoro';
 
 interface FormData {
   id: number;
@@ -21,19 +21,19 @@ function App() {
 
   return (
     <div className='home'>
-    <Router>
-      <Nav className="navbar" />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route 
-          path="/creaform" 
-          element={<CreaForm setFormData={setFormData} formData={formData} />} 
-        />
-        <Route path="/form-preview" element={<GeneratedForm />} />
-        <Route path="/simulazioni" element={<Simulazioni />} />
-        <Route path="/offertedilavoro" element={<OffertediLavoro />} />
-      </Routes>
-    </Router>
+      <Router>
+        <Nav className="navbar" />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/creaform"
+            element={<CreaForm setFormData={setFormData} formData={formData} />}
+          />
+          <Route path="/form-preview" element={<GeneratedForm />} />
+          <Route path="/simulazioni" element={<Simulazioni />} />
+          <Route path="/offertedilavoro" element={<OffertediLavoro />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
