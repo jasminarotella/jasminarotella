@@ -17,7 +17,7 @@
     --width-background: 80vh;
     --border-radius-background: 25px;
     --border-radius: 15px;
-    --padding-background: 10px;
+    --padding-background: 20px;
     --font-main: montserrat;
     --button-color: var(--color5);
     --margin-label: 20px;
@@ -59,3 +59,13 @@
 }
 
 
+.MuiAccordionDetails-root {
+    border-radius: var(--border-radius-background);
+    background-color:var(--color1) !important;
+    padding: 10px !important;
+}
+
+.MuiAccordion-region {
+    background-color:var(--color5) !important;
+    padding: 5px;
+}

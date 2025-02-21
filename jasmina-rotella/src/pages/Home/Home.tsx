@@ -1,8 +1,8 @@
 // @ts-ignore
 
 import { Link } from 'react-router-dom';
-import CustomButton from '../Button';
 import './Style.css'
+import AccordionMenu from './AccordionComponents';
 
 export interface HomeProps {
     children?: React.ReactNode,
@@ -13,10 +13,7 @@ export interface HomeProps {
 const Home : React.FC <HomeProps> = ({className}) => {
     return (
        <div className={className}>
-        <Link to="/offertedilavoro">
-        <CustomButton className="button-jas">Offerte di Lavoro</CustomButton>
-        </Link>
-      
+        <AccordionMenu/>
        </div>
     )
 };

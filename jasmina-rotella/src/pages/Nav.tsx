@@ -14,8 +14,8 @@ const Nav: React.FC<NavProps> = ({ className }) => {
         <Link to="/">
         <button className="button-jas">Home</button>
         </Link>
-        <Link to="/creaform">
-        <button className="button-jas">Crea Form</button>
+        <Link to="/simulazioni">
+        <button className="button-jas">Simulazioni</button>
         </Link>
       
     </nav>

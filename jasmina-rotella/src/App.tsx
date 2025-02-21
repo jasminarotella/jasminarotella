@@ -1,5 +1,3 @@
-// @ts-ignore
-
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Corretto import
 import { useState } from 'react';
@@ -9,7 +7,7 @@ import './pages/Home/Style.css';
 import CreaForm from './pages/Home/CreaForm';
 import GeneratedForm from './pages/Home/GeneratedForm';
 import Nav from './pages/Nav';
-import Offertedilavoro from './pages/Home/OffertediLavoro/offertediLavoro';
+import Simulazioni from './pages/Home/Simulazioni/Simulazioni';
 
 interface FormData {
   id: number;
@@ -31,10 +29,9 @@ function App() {
           element={<CreaForm setFormData={setFormData} formData={formData} />} 
         />
         <Route path="/form-preview" element={<GeneratedForm />} />
-        <Route path="/offertedilavoro" element={<Offertedilavoro />} />
+        <Route path="/simulazioni" element={<Simulazioni />} />
       </Routes>
     </Router>
-    
     </div>
   );
 }
