@@ -21,6 +21,23 @@ mongoose.connect(process.env.MONGO_URI, {
 app.get('/', (req, res) => {
     res.send('Hello from Node.js Backend!');
 });
+//APi post di esempio
+const User = mongoose.model('User', new mongoose.Schema({
+    name: String,
+    age: Number
+}));
+
+app.post('/add-user', async (req, res) => {
+    try {
+        const newUser = new User(req.body);
+        await newUser.save();
+        res.json({ message: "Utente salvato nel database!" });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
 
 // Avvia il server
 app.listen(PORT, () => {
