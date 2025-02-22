@@ -8,9 +8,10 @@ import GeneratedForm from './pages/Home/GeneratedForm';
 import Nav from './pages/Nav';
 import Simulazioni from './pages/Home/Simulazioni/HomeSimulazioni';
 // import OffertediLavoro from './pages/Home/Simulazioni/OffertediLavoro';
-import OfferteList from './pages/Home/Simulazioni/OfferteList';
+import OfferteList from './pages/Home/Simulazioni/OfferteDiLavoro/OfferteList';
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import AggiungiOfferta from './pages/Home/Simulazioni/aggiungiOfferta';
+import AggiungiOfferta from './pages/Home/Simulazioni/OfferteDiLavoro/aggiungiOfferta';
+import ModificaOfferta from './pages/Home/Simulazioni/OfferteDiLavoro/modificaOfferta';
 
 interface FormData {
   id: number;
@@ -35,6 +36,7 @@ function App() {
           <Route path="/simulazioni" element={<Simulazioni />} />
           <Route path="/offertedilavoro" element={<OfferteList />} />
           <Route path="/aggiungiofferta" element={<AggiungiOfferta />} />
+          <Route path="/modificaofferta" element={<ModificaOfferta />} />
         </Routes>
       </Router>
     </div>

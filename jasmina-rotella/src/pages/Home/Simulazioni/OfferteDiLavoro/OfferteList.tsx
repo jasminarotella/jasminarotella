@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./OfferteList.css";
 
 import axios from "axios";
-import CustomButton from "../../Button";
-import { Link } from "react-router-dom";
+import NavOfferte from "./NavOfferte";
 
 export interface Offerta {
     _id: string;
@@ -35,12 +34,9 @@ const OfferteList: React.FC = () => {
     }, []);
 
     return (
-        <><div className="instestazione">
-            <h2>Offerte di Lavoro</h2>
-            <Link to="/aggiungiofferta">
-                <CustomButton className="button-add">+</CustomButton>aggiungi offerta
-            </Link>
-        </div><div className="offertelist">
+        <>
+            <NavOfferte />
+            <div className="offertelist">
                 {offerte.length === 0 ? (
                     <p>Nessuna offerta disponibile.</p>
                 ) : (

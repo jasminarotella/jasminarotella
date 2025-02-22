@@ -1,18 +1,15 @@
-export const aggiungiOfferta: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-};
+
 
 
 export const formStyle: React.CSSProperties = {
-    width: '80%',
     marginTop: '2rem',
     backgroundColor: 'var(--color2)',
     borderRadius: 'var(--border-radius)',
-    padding: '1rem'
-    
+    padding: '1rem',
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'stretch',
+    flexDirection: 'column',
    
 };
 
