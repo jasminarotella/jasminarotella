@@ -2,7 +2,7 @@
 
 import { Link } from 'react-router-dom';
 import './Style.css'
-import AccordionMenuComponents from './AccordionMenus/AccordionComponents';
+import AccordionMenuComponents from './components/AccordionMenus/AccordionComponents';
 
 export interface HomeProps {
     children?: React.ReactNode,

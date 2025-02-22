@@ -4,9 +4,10 @@ import {
      ButtonStyle, checkboxStyle, formStyle,
     inputStyle, labelStyle, selectStyle, smartStyle
 } from './aggiungiOff-css';
-import CustomButton from '../../../Button';
+import CustomButton from '../../components/Button';
 import './OfferteList.css';
 import NavOfferte from './NavOfferte';
+import BoxJas from '../../components/BoxJas/BoxJas';
 
 // Interfaccia per la struttura dell'offerta
 interface Offerta {
@@ -67,10 +68,8 @@ const AggiungiOfferta: React.FC = () => {
     return (
         <>
             <NavOfferte />
-            <div className="intestazione-pagine">
-                <h2>Aggiungi Offerta</h2>
-                <p>Compila il form per aggiungere un'offerta di lavoro.</p>
-            </div>
+            <BoxJas title="Aggiungi Offerta" description="Compila il form per aggiungere un'offerta di lavoro." />
+            
             <form style={formStyle} className="form-style" onSubmit={handleSubmit}>
                 <div>
                     <label style={labelStyle}>Titolo</label>

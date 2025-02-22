@@ -25,7 +25,7 @@
 }
 
 .home {
-    background-color: var(--background-color);
+    background-color: white;
     color: var(--font-color-main);
     font-family: var(--font-main);
     min-height: var(--height-background);
@@ -65,7 +65,7 @@
 
 .accordion-components .MuiAccordionDetails-root {
     border-radius: var(--border-radius-background);
-    background-color: white !important;
+    background-color: var(--color1);
     padding: 10px !important;
 }
 

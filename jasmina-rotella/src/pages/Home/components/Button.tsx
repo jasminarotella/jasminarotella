@@ -1,4 +1,4 @@
-import './Home/Style.css'; // Import del CSS
+import '../Style.css'; // Import del CSS
 
 export interface ButtonProps  {
     className?: string; 

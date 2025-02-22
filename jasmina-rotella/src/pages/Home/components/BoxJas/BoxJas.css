@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --color1: #F4F4ED;
+    --color2: #72DDF7;
+    --color3: #8093F1;
+    --color4: #B388EB;
+    --color5: #F7AEF8;
+    --title-font: 'Libre Baskerville', serif;
+    --font-main: 'Montserrat', sans-serif;
+    --font-color-main: black;
+    --font-color-secondary: #F4F4ED;
+    --background-color: var(--color1);
+    --height-background: 90vh;
+    --width-background: 80vh;
+    --border-radius-background: 25px;
+    --border-radius: 15px;
+    --button-color: var(--color5);
+    --padding-background: 20px;
+    --margin-label: 20px;
+    --margin-input: 5px;
+}
+
+.box-jas {
+    background-color: white;
+    color: var(--font-color-main);
+    min-height: fit-content;
+    overflow: auto;
+    margin: 10px;
+    border-radius: var(--border-radius-background);
+    padding: var(--padding-background);
+    box-shadow: 4px 4px  var(--color3);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+}
+
+.title {
+    text-decoration: none;
+    font-family: var(--title-font) !important;
+    color: var(--color3) !important;
+}
+.description {
+    font-family: var(--font-main) !important;
+    font-size: 0.9em;
+}
+

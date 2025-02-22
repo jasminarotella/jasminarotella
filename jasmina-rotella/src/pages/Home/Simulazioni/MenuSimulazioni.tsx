@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CustomButton from '../../Button';
+import CustomButton from '../components/Button';
 
 
 export const MenuSimulazioni: React.FC = () => {

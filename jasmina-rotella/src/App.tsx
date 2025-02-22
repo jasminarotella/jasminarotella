@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Co
 import { useState } from 'react';
 import Home from './pages/Home/Home';
 import './pages/Home/Style.css';
-import CreaForm from './pages/Home/CreaForm';
-import GeneratedForm from './pages/Home/GeneratedForm';
+import CreaForm from './pages/Home/components/CreaForm';
+import GeneratedForm from './pages/Home/components/GeneratedForm';
 import Nav from './pages/Nav';
 import Simulazioni from './pages/Home/Simulazioni/HomeSimulazioni';
 // import OffertediLavoro from './pages/Home/Simulazioni/OffertediLavoro';

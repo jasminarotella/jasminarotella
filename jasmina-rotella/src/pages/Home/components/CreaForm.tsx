@@ -1,7 +1,7 @@
 // @ts-ignore
 
 import { FormEvent, useState } from "react";
-import CustomButton from "../Button";
+import CustomButton from "./Button";
 
 interface FormData {
   id: number;

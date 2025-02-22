@@ -3,7 +3,8 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import GeneratedForm from '../GeneratedForm';
-import CustomButton from '../../Button';
+import CustomButton from '../Button';
+import BoxJas from '../BoxJas/BoxJas';
 import CreaForm from '../CreaForm';
 interface FormData {
   id: number;
@@ -49,6 +50,18 @@ export const AccordionMenuComponents: React.FC = () => {
         </AccordionSummary>
         <AccordionDetails>
           <CreaForm setFormData={setFormData} formData={formData} />
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+          BoxJas
+        </AccordionSummary>
+        <AccordionDetails>
+          <BoxJas title={'1 - Box Jas'} description={'Description : accetta stringhe'} />
+          <BoxJas title={'2'} description={<BoxJas title={'Box Jas'} description={'o accetta JSX element'}/>} />
         </AccordionDetails>
       </Accordion>
     </div>
