@@ -68,7 +68,7 @@ const AggiungiOfferta: React.FC = () => {
     return (
         <>
             <NavOfferte />
-            <BoxJas title="Aggiungi Offerta" description="Compila il form per aggiungere un'offerta di lavoro." />
+            <BoxJas title="Aggiungi Offerta" description="Compila il form per aggiungere un'offerta di lavoro." classStyle='title2'/>
             
             <form style={formStyle} className="form-style" onSubmit={handleSubmit}>
                 <div>

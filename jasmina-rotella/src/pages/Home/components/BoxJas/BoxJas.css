@@ -34,15 +34,22 @@
     padding: var(--padding-background);
     box-shadow: 4px 4px  var(--color3);
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     gap: 20px;
 }
 
-.title {
+.title1 {
     text-decoration: none;
+    font-size: 1.1em !important;
     font-family: var(--title-font) !important;
     color: var(--color3) !important;
+}
+.title2 {
+    text-decoration: none;
+    font-size: 1em !important;
+    font-family: var(--title-font) !important;
+    color: var(--color4) !important;
 }
 .description {
     font-family: var(--font-main) !important;

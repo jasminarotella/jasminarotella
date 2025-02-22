@@ -6,7 +6,7 @@ export interface ButtonProps  {
     //una prop è cosa succede quando clicco sul pulsante?
     onClick?: (event: React.MouseEvent) => void;
     type?: "submit" | "reset" | "button" | undefined;
-    style?: React.CSSProperties;
+    style?: React.CSSProperties ;
     //...props: React.HTMLProps<HTMLButtonElement>;
 }
 

@@ -3,6 +3,8 @@ import "./OfferteList.css";
 
 import axios from "axios";
 import NavOfferte from "./NavOfferte";
+import BoxJas from "../../components/BoxJas/BoxJas";
+import InputSearch from "../../components/InputSearch";
 
 export interface Offerta {
     _id: string;
@@ -36,6 +38,12 @@ const OfferteList: React.FC = () => {
     return (
         <>
             <NavOfferte />
+            <BoxJas title={
+               <InputSearch />}
+                description={
+                    <div>Inserisci componente filtro</div>
+                }
+            />
             <div className="offertelist">
                 {offerte.length === 0 ? (
                     <p>Nessuna offerta disponibile.</p>

@@ -162,6 +162,16 @@
     flex-direction: column;
     margin-top: 1rem;
 }
-
+.button-search {
+    background-color: var(--color3 ) !important;
+    font-size: 1rem;
+    border-radius: var(--border-radius-background);
+    color: var(--color1);
+    text-decoration: none;
+    margin: 1rem;
+    border: none;
+    cursor: pointer;
+    padding: 0.5em;
+}
 
  

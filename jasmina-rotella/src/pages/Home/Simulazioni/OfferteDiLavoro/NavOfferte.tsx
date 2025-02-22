@@ -7,8 +7,9 @@ import BoxJas from "../../components/BoxJas/BoxJas";
 const NavOfferte: React.FC = () => {
     return (
         <BoxJas 
+        
         title={
-            <Link to="/offertedilavoro" className="title">
+            <Link to="/offertedilavoro" className="title1">
                 Offerte di Lavoro
             </Link>
             } 
