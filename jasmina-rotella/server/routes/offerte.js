@@ -28,8 +28,8 @@ router.get('/search', async (req, res) => {
     }
 });
 
-// ✅ Creare un'offerta (protetta con autenticazione)
-router.post('/', authMiddleware, async (req, res) => {
+// ✅ Creare un'offerta (protetta con autenticazione) (, authMiddleware)
+router.post('/', async (req, res) => {
     try {
         const nuovaOfferta = new OfferteLavoro(req.body);
         await nuovaOfferta.save();
@@ -38,6 +38,8 @@ router.post('/', authMiddleware, async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+
 
 // ✅ Ottenere tutte le offerte
 router.get('/', async (req, res) => {

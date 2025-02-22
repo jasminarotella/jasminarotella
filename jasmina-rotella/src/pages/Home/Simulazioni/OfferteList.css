@@ -9,7 +9,6 @@
 /* Contenitore principale */
 .offertelist {
     background-color: var(--color3);
-    width: 90%;
     min-height: 90vh;
     border-radius: var(--border-radius-background);
     margin: auto;
@@ -38,16 +37,15 @@
 /* Stile delle card */
 .offerta {
     list-style-type: none;
-    background: var(--color1);
+    background: white;
     border-radius: var(--border-radius-background);
     padding: 1.5rem;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s;
-    border-left: 5px solid var(--color2);
+    border-left: 5px solid var(--color5);
     text-align: left;
 
 }
@@ -149,7 +147,7 @@
     margin: auto;
     margin-bottom: 1rem;
     border-radius: var(--border-radius-background);
-    width: 90%;
+    border-left: 5px solid var(--color3);
 }
 
 .instestazione .button-add {
@@ -169,4 +167,5 @@
     font-size: 0.9rem;
     color: var(--color3);
 }
+
 

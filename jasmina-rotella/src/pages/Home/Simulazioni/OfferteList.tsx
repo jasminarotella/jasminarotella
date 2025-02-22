@@ -5,7 +5,7 @@ import axios from "axios";
 import CustomButton from "../../Button";
 import { Link } from "react-router-dom";
 
-interface Offerta {
+export interface Offerta {
     _id: string;
     titolo: string;
     descrizioneBreve: string;
