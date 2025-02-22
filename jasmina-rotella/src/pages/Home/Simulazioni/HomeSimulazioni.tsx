@@ -1,7 +1,7 @@
 // @ts-ignore
 
+import React from "react";
 import MenuSimulazioni from "./MenuSimulazioni";
-
 
 
 const Simulazioni: React.FC = () => {

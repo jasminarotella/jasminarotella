@@ -12,13 +12,13 @@
     --font-color-main: black;
     --font-color-secondary: #F4F4ED;
     --background-color: var(--color1);
-    --title-font: libre-baskerville;
+    --title-font: 'Libre Baskerville', serif;
     --height-background: 90vh;
     --width-background: 80vh;
     --border-radius-background: 25px;
     --border-radius: 15px;
     --padding-background: 20px;
-    --font-main: montserrat;
+    --font-main: 'Montserrat', sans-serif;
     --button-color: var(--color5);
     --margin-label: 20px;
     --margin-input: 5px;
