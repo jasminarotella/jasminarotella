@@ -10,6 +10,7 @@ import Simulazioni from './pages/Home/Simulazioni/HomeSimulazioni';
 // import OffertediLavoro from './pages/Home/Simulazioni/OffertediLavoro';
 import OfferteList from './pages/Home/Simulazioni/OfferteList';
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import AggiungiOfferta from './pages/Home/Simulazioni/aggiungiOfferta';
 
 interface FormData {
   id: number;
@@ -33,6 +34,7 @@ function App() {
           <Route path="/form-preview" element={<GeneratedForm />} />
           <Route path="/simulazioni" element={<Simulazioni />} />
           <Route path="/offertedilavoro" element={<OfferteList />} />
+          <Route path="/aggiungiofferta" element={<AggiungiOfferta />} />
         </Routes>
       </Router>
     </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CustomButton from '../../Button';
 
 
 export const MenuSimulazioni: React.FC = () => {
@@ -7,10 +8,10 @@ export const MenuSimulazioni: React.FC = () => {
 
     <div>
       <Link to="/offertedilavoro">
-        <button className="button-jas">Offerte di Lavoro</button>
+        <CustomButton className="button-jas">Offerte di Lavoro</CustomButton>
       </Link>
       <Link to="/#">
-        <button className="button-jas">Esami e Studenti</button>
+        <CustomButton className="button-jas">Esami e Studenti</CustomButton>
       </Link>
     </div>
 
