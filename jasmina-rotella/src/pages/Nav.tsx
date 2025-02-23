@@ -12,11 +12,15 @@ const Nav: React.FC<NavProps> = ({ className }) => {
     <nav className={`nav-jas ${className}`}>
       
         <Link to="/">
-        <button className="button-jas">Home</button>
+        <CustomButton className="button-jas">Home</CustomButton>
         </Link>
         <Link to="/simulazioni">
-        <button className="button-jas">Simulazioni</button>
+        <CustomButton className="button-jas">Simulazioni</CustomButton>
         </Link>
+        <Link to="/libreriacomponenti">
+        <CustomButton className="button-jas">Libreria Componenti</CustomButton>
+        </Link>
+        
       
     </nav>
   );

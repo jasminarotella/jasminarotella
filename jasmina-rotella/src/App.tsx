@@ -1,18 +1,20 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Corretto import
 import { useState } from 'react';
-import Home from './pages/Home/Home';
+import ComponentLibrary from './pages/Home/ComponentLibrary.tsx';
 import './pages/Home/Style.css';
 import CreaForm from './pages/Home/components/CreaForm';
 import GeneratedForm from './pages/Home/components/GeneratedForm';
 import Nav from './pages/Nav';
 import Simulazioni from './pages/Home/Simulazioni/HomeSimulazioni';
-// import OffertediLavoro from './pages/Home/Simulazioni/OffertediLavoro';
+// import OffertediLavoro from './pages/ComponentLibrary/Simulazioni/OffertediLavoro';
 import OfferteList from './pages/Home/Simulazioni/OfferteDiLavoro/OfferteList';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import AggiungiOfferta from './pages/Home/Simulazioni/OfferteDiLavoro/aggiungiOfferta';
 import ModificaOfferta from './pages/Home/Simulazioni/OfferteDiLavoro/modificaOfferta';
 import RimuoviOfferta from './pages/Home/Simulazioni/OfferteDiLavoro/rimuoviOfferte';
+import MainHome from './pages/MainHome.tsx';
+import PersonalHome from './pages/PersonalHome/PersonalHome.tsx';
 
 interface FormData {
   id: number;
@@ -28,7 +30,8 @@ function App() {
       <Router>
         <Nav className="navbar" />
         <Routes>
-          <Route path="/" element={<Home />} />
+        <Route path="/" element={<MainHome />} />
+          <Route path="/libreriacomponenti" element={<ComponentLibrary />} />
           <Route
             path="/creaform"
             element={<CreaForm setFormData={setFormData} formData={formData} />}
@@ -39,6 +42,7 @@ function App() {
           <Route path="/aggiungiofferta" element={<AggiungiOfferta />} />
           <Route path="/modificaofferta" element={<ModificaOfferta />} />
           <Route path="/rimuoviofferta" element={<RimuoviOfferta />} />
+          <Route path="/personalpage" element={<PersonalHome />} />
         </Routes>
       </Router>
     </div>
