@@ -1,9 +1,8 @@
-import React, { JSX } from 'react';
 import './BoxJas.css';
 
 export interface BoxJasProps {
-    title?: string | JSX.Element;
-    description?: string | JSX.Element;
+    title?: React.ReactNode;
+    description?: React.ReactNode;
     classStyle?: string;
 }
 

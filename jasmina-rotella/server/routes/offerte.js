@@ -4,15 +4,13 @@ import OfferteLavoro from "../models/OfferteLavoro.js";
 
 const router = express.Router();
 
-// ✅ API di ricerca
+// API di ricerca
 router.get('/search', async (req, res) => {
     try {
         const { query } = req.query;
-
         if (!query || query.trim() === "") {
             return res.status(400).json({ error: "Devi specificare un testo di ricerca" });
         }
-
         const offerte = await OfferteLavoro.find({
             $or: [
                 { titolo: { $regex: new RegExp(query, "i") } },
@@ -20,7 +18,6 @@ router.get('/search', async (req, res) => {
                 { provincia: { $regex: new RegExp(query, "i") } }
             ]
         }).sort({ dataInserimento: -1 });
-
         res.json(offerte);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -29,15 +26,14 @@ router.get('/search', async (req, res) => {
 
 router.get("/provinces", async (req, res) => {
     try {
-        const provinces = await OfferteLavoro.distinct("provincia"); // Estrae province uniche
+        const provinces = await OfferteLavoro.distinct("provincia");
         res.json(provinces);
     } catch (error) {
         res.status(500).json({ error: "Errore nel recupero delle province" });
     }
 });
 
-
-// ✅ Creare un'offerta
+// Creare un'offerta
 router.post('/', async (req, res) => {
     try {
         const nuovaOfferta = new OfferteLavoro(req.body);
@@ -48,7 +44,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// ✅ Ottenere tutte le offerte
+// Ottenere tutte le offerte
 router.get('/', async (req, res) => {
     try {
         const offerte = await OfferteLavoro.find().sort({ dataInserimento: -1 });
@@ -58,57 +54,43 @@ router.get('/', async (req, res) => {
     }
 });
 
-// ✅ Ottenere un'offerta per ID (Utilizza `_id` di MongoDB)
+// Ottenere un'offerta per ID (se vuoi usare il campo auto-increment, usa findOne)
 router.get('/:id', async (req, res) => {
     try {
-        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-            return res.status(400).json({ error: "ID non valido. Deve essere un ObjectId MongoDB." });
-        }
-
-        const offerta = await OfferteLavoro.findById(req.params.id);
+        const offerta = await OfferteLavoro.findOne({ id: req.params.id });
         if (!offerta) return res.status(404).json({ error: "Offerta non trovata" });
-
         res.json(offerta);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
 
-// ✅ Modificare un'offerta per ID
+// Modificare un'offerta per ID (usa il campo auto-increment "id")
 router.put('/:id', async (req, res) => {
     try {
         const offertaAggiornata = await OfferteLavoro.findOneAndUpdate(
-            { id: req.params.id }, // Cerca in base al campo auto-incrementato
+            { id: req.params.id },
             req.body,
             { new: true, runValidators: true }
         );
-
         if (!offertaAggiornata) {
             return res.status(404).json({ error: "Offerta non trovata" });
         }
-
         res.json({ message: "Offerta aggiornata con successo!", offerta: offertaAggiornata });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
 
-// ✅ Eliminare un'offerta per ID
+// Eliminare un'offerta per ID (usa il campo auto-increment "id")
 router.delete('/:id', async (req, res) => {
     try {
-        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-            return res.status(400).json({ error: "ID non valido. Deve essere un ObjectId MongoDB." });
-        }
-
-        const offerta = await OfferteLavoro.findByIdAndDelete(req.params.id);
+        const offerta = await OfferteLavoro.findOneAndDelete({ id: req.params.id });
         if (!offerta) return res.status(404).json({ error: "Offerta non trovata" });
-
         res.json({ message: "Offerta eliminata con successo!" });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
-
-
 
 export default router;

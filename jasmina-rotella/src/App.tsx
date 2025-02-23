@@ -12,6 +12,7 @@ import OfferteList from './pages/Home/Simulazioni/OfferteDiLavoro/OfferteList';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import AggiungiOfferta from './pages/Home/Simulazioni/OfferteDiLavoro/aggiungiOfferta';
 import ModificaOfferta from './pages/Home/Simulazioni/OfferteDiLavoro/modificaOfferta';
+import RimuoviOfferta from './pages/Home/Simulazioni/OfferteDiLavoro/rimuoviOfferte';
 
 interface FormData {
   id: number;
@@ -37,6 +38,7 @@ function App() {
           <Route path="/offertedilavoro" element={<OfferteList />} />
           <Route path="/aggiungiofferta" element={<AggiungiOfferta />} />
           <Route path="/modificaofferta" element={<ModificaOfferta />} />
+          <Route path="/rimuoviofferta" element={<RimuoviOfferta />} />
         </Routes>
       </Router>
     </div>

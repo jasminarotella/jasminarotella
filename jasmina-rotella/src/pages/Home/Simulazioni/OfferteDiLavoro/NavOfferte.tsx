@@ -24,7 +24,7 @@ const NavOfferte: React.FC = () => {
                     <CustomButton className="button-add">M
                     </CustomButton>modifica offerta
                 </Link>
-                <Link to="/aggiungiofferta">
+                <Link to="/rimuoviofferta">
                     <CustomButton className="button-add">-
                     </CustomButton>rimuovi offerta
                 </Link>
