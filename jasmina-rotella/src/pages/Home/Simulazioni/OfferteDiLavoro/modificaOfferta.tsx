@@ -12,88 +12,35 @@ import CustomButton from "../../components/Button";
 import axios from "axios";
 import InputSearch from "../../components/InputSearch/InputSearch";
 
-
-
 const ModificaOfferta: React.FC = () => {
-    const [offerta, setOfferta] = useState<Offerta>({
-        id: 0,
-        titolo: '',
-        descrizioneBreve: '',
-        azienda: '',
-        provincia: '',
-        smartWorking: false,
-        retribuzioneLorda: 0,
-        tipologiaContratto: '',
-        dataInserimento: new Date(),
-    });
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value, type } = e.target;
-        setOfferta((prevOfferta) => ({
-            ...prevOfferta,
-            [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value
-        }));
-    };
-
-
-    const [showInput, setShowInput] = useState(false);
-    const modifica = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post("http://localhost:5001/offerte", offerta);
-            console.log("✅ Offerta aggiunta:", response.data);
-            alert("Offerta aggiunta con successo!");
-            setOfferta({
-                            id: 0,
-                            titolo: '',
-                            descrizioneBreve: '',
-                            azienda: '',
-                            provincia: '',
-                            smartWorking: false,
-                            retribuzioneLorda: 0,
-                            tipologiaContratto: '',
-                            dataInserimento: new Date(),
-                        });
-        } catch (error) {
-            console.error("❌ Errore nell'aggiunta dell'offerta:", error);
-            alert("Errore durante l'aggiunta dell'offerta.");
-        }
-    }
-    const IniziaModifica = () => {
-        setShowInput((prev) => !prev)
-
-    }
-
     const [offerte, setOfferte] = useState<Offerta[]>([]);
     const [offerteFiltrate, setOfferteFiltrate] = useState<Offerta[]>([]);
     const [query, setQuery] = useState<string>("");
     const [provincia, setProvincia] = useState<string>("");
     const [provinceList, setProvinceList] = useState<string[]>([]);
+    // Indica se è stata eseguita una ricerca
+    const [searchPerformed, setSearchPerformed] = useState<boolean>(false);
+    const [selectedOfferta, setSelectedOfferta] = useState<Offerta | null>(null);
 
-    // 🔄 Recupera le offerte dal backend ed estrae le province uniche dalle offerte
+    const fetchData = async () => {
+        try {
+            const response = await axios.get<Offerta[]>("http://localhost:5001/offerte");
+            setOfferte(response.data);
+            setOfferteFiltrate(response.data);
+            const uniqueProvinces = Array.from(new Set(response.data.map(offerta => offerta.provincia)));
+            setProvinceList(uniqueProvinces);
+        } catch (error) {
+            console.error("❌ Errore nel recupero dei dati:", error);
+        }
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get<Offerta[]>("http://localhost:5001/offerte");
-                console.log("✅ Dati ricevuti dal backend:", response.data);
-                setOfferte(response.data);
-                setOfferteFiltrate(response.data);
-
-                // Estrai le province uniche direttamente dalle offerte
-                const uniqueProvinces = Array.from(
-                    new Set(response.data.map(offerta => offerta.provincia))
-                );
-                console.log("✅ Province uniche estratte:", uniqueProvinces);
-                setProvinceList(uniqueProvinces);
-            } catch (error) {
-                console.error("❌ Errore nel recupero dei dati:", error);
-            }
-        };
         fetchData();
     }, []);
 
-    // 🔍 Funzione per filtrare le offerte in base a query e provincia
+    // Filtra le offerte e imposta che la ricerca è stata eseguita
     const handleSearch = () => {
+        setSearchPerformed(true);
         const filtered = offerte.filter(offerta => {
             const matchesQuery =
                 query.trim() === "" ||
@@ -103,68 +50,101 @@ const ModificaOfferta: React.FC = () => {
                 provincia.trim() === "" || offerta.provincia === provincia;
             return matchesQuery && matchesProvincia;
         });
-        console.log("🔍 Offerte filtrate:", filtered);
         setOfferteFiltrate(filtered);
     };
 
+    // Seleziona l'offerta da modificare
+    const handleSelect = (offerta: Offerta) => {
+        setSelectedOfferta(offerta);
+    };
+
+    // Gestione dei cambiamenti per l'offerta selezionata
+    const handleSelectedChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        if (selectedOfferta) {
+            const { name, value, type } = e.target;
+            setSelectedOfferta({
+                ...selectedOfferta,
+                [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
+            });
+        }
+    };
+
+    // Aggiorna l'offerta tramite PUT
+    const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (selectedOfferta) {
+            // Usa selectedOfferta.id se esiste, altrimenti usa selectedOfferta._id
+            const identifier = selectedOfferta.id ?? selectedOfferta.id;
+            try {
+                await axios.put(`http://localhost:5001/offerte/${identifier}`, selectedOfferta);
+                alert("Offerta aggiornata con successo!");
+                setSelectedOfferta(null);
+                fetchData();
+            } catch (error) {
+                console.error("❌ Errore nell'aggiornamento dell'offerta:", error);
+                alert("Errore durante l'aggiornamento dell'offerta.");
+            }
+        }
+    };
+    
     return (
         <>
             <NavOfferte />
-            <BoxJas title="Modifica Offerta"
-                description={
-                    <div>
-                        Scegli l'offerta da modificare e salva per aggiornarla.
-                        <CustomButton onClick={IniziaModifica}>Cerca offerta</CustomButton>
-                    </div>}
-                classStyle="title2" />
             <BoxJas
-                title={
-                    <div >
-                        {/* Input di ricerca e selezione provincia */}
-                        <InputSearch
-                            query={query}
-                            setQuery={setQuery}
-                            provincia={provincia}
-                            setProvincia={setProvincia}
-                            provinceList={provinceList}
-                            handleSearch={handleSearch}
-                        />
-
-                    </div>
-                }
-                description={<div className="description-search">
-                    Cerca offerte di lavoro nella tua città!
-                </div>}
+                title="Modifica Offerta"
+                description="Modifica un'offerta esistente dopo aver effettuato una ricerca."
+                classStyle="title2"
             />
-
-            {showInput &&
+             {selectedOfferta && (
                 <BoxJas
-                    description={<>
-                        {offerteFiltrate.length === 0 ? 
-                        (
-                            <p>Nessuna offerta disponibile.</p>
-                        ) : 
-                        (
-                        <form style={formStyle} className="form-style" onSubmit={modifica}>
-                            {offerteFiltrate.map(offerta => (
-                            <div key={offerta.id} className="offerta">
+                    title=
+                    {<h3>Modifica Offerta <span className="title2"> </span> </h3>}
+                    description={
+                        <form style={formStyle} onSubmit={handleUpdate}>
+                            <div>
                                 <label style={labelStyle}>Titolo</label>
-                                <input type="text" name="titolo" style={inputStyle} value={offerta.titolo} onChange={handleChange} required />
+                                <input
+                                    type="text"
+                                    name="titolo"
+                                    style={inputStyle}
+                                    value={selectedOfferta.titolo}
+                                    onChange={handleSelectedChange}
+                                    required
+                                />
                             </div>
-
-                            ))}
                             <div>
                                 <label style={labelStyle}>Descrizione Breve</label>
-                                <input type="text" name="descrizioneBreve" style={inputStyle} value={offerta.descrizioneBreve} onChange={handleChange} required />
+                                <input
+                                    type="text"
+                                    name="descrizioneBreve"
+                                    style={inputStyle}
+                                    value={selectedOfferta.descrizioneBreve}
+                                    onChange={handleSelectedChange}
+                                    required
+                                />
                             </div>
                             <div>
                                 <label style={labelStyle}>Azienda</label>
-                                <input type="text" name="azienda" style={inputStyle} value={offerta.azienda} onChange={handleChange} required />
+                                <input
+                                    type="text"
+                                    name="azienda"
+                                    style={inputStyle}
+                                    value={selectedOfferta.azienda}
+                                    onChange={handleSelectedChange}
+                                    required
+                                />
                             </div>
                             <div>
                                 <label style={labelStyle}>Provincia</label>
-                                <select name="provincia" style={selectStyle} value={offerta.provincia} onChange={handleChange} required>
+                                <select
+                                    name="provincia"
+                                    style={selectStyle}
+                                    value={selectedOfferta.provincia}
+                                    onChange={handleSelectedChange}
+                                    required
+                                >
                                     <option value="">Seleziona una provincia</option>
+                                    {/* Inserisci qui le opzioni per le province */}
                                     <option value="AG">Agrigento</option>
                                     <option value="AL">Alessandria</option>
                                     <option value="AN">Ancona</option>
@@ -274,18 +254,36 @@ const ModificaOfferta: React.FC = () => {
                                     <option value="VT">Viterbo</option>
                                 </select>
                             </div>
-
                             <div style={smartStyle}>
                                 <label>Smart Working</label>
-                                <input type="checkbox" name="smartWorking" style={checkboxStyle} checked={offerta.smartWorking} onChange={handleChange} />
+                                <input
+                                    type="checkbox"
+                                    name="smartWorking"
+                                    style={checkboxStyle}
+                                    checked={selectedOfferta.smartWorking}
+                                    onChange={handleSelectedChange}
+                                />
                             </div>
                             <div>
                                 <label style={labelStyle}>Retribuzione Lorda</label>
-                                <input type="number" name="retribuzioneLorda" style={inputStyle} value={offerta.retribuzioneLorda} onChange={handleChange} required />
+                                <input
+                                    type="number"
+                                    name="retribuzioneLorda"
+                                    style={inputStyle}
+                                    value={selectedOfferta.retribuzioneLorda}
+                                    onChange={handleSelectedChange}
+                                    required
+                                />
                             </div>
                             <div>
                                 <label style={labelStyle}>Tipologia Contratto</label>
-                                <select name="tipologiaContratto" style={selectStyle} value={offerta.tipologiaContratto} onChange={handleChange} required>
+                                <select
+                                    name="tipologiaContratto"
+                                    style={selectStyle}
+                                    value={selectedOfferta.tipologiaContratto}
+                                    onChange={handleSelectedChange}
+                                    required
+                                >
                                     <option value="">Seleziona un contratto</option>
                                     <option value="Full time">Full time</option>
                                     <option value="Part time">Part time</option>
@@ -294,20 +292,66 @@ const ModificaOfferta: React.FC = () => {
                                     <option value="Tempo Indeterminato">Tempo Indeterminato</option>
                                 </select>
                             </div>
-                            <div>
-                                <label style={labelStyle}>Data Inserimento</label>
-                                <input type="date" name="dataInserimento" style={inputStyle} value={offerta.dataInserimento.toISOString().split('T')[0]} onChange={handleChange} required />
-                            </div>
-
-                            <CustomButton type="submit" style={ButtonStyle}>Aggiungi</CustomButton>
+                            <CustomButton type="submit" style={ButtonStyle}>
+                                Aggiorna
+                            </CustomButton>
                         </form>
-                        )
                     }
-                    </>}
                 />
-            }
+            )}
 
+            <BoxJas
+                title={
+                    <InputSearch
+                        query={query}
+                        setQuery={setQuery}
+                        provincia={provincia}
+                        setProvincia={setProvincia}
+                        provinceList={provinceList}
+                        handleSearch={handleSearch}
+                    />
+                }
+                description="Cerca offerte di lavoro nella tua città!"
+            />
+
+            {searchPerformed ? (
+                <BoxJas
+                    title={
+                        <>
+                            {offerteFiltrate.length === 0 ? (
+                                <p>Nessuna offerta disponibile.</p>
+                            ) : (
+                                offerteFiltrate.map(offerta => (
+                                    <div
+                                        key={offerta.id}
+                                        className="offerta-list"
+                                        style={{
+                                            marginBottom: "10px",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "space-between",
+                                        }}
+                                    >
+                                        <span>{offerta.titolo}</span>
+                                        <CustomButton onClick={() => handleSelect(offerta)}>
+                                            Modifica
+                                        </CustomButton>
+                                    </div>
+                                ))
+                            )}
+                        </>
+                    }
+                />
+            ) : (
+                <BoxJas
+                    title="Risultati di ricerca"
+                    description={<p>Nessuna offerta disponibile.</p>}
+                />
+            )}
+
+           
         </>
-    )
+    );
 };
+
 export default ModificaOfferta;

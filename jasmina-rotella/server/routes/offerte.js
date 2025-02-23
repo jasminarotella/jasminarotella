@@ -77,12 +77,8 @@ router.get('/:id', async (req, res) => {
 // ✅ Modificare un'offerta per ID
 router.put('/:id', async (req, res) => {
     try {
-        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-            return res.status(400).json({ error: "ID non valido. Deve essere un ObjectId MongoDB." });
-        }
-
-        const offertaAggiornata = await OfferteLavoro.findByIdAndUpdate(
-            req.params.id,
+        const offertaAggiornata = await OfferteLavoro.findOneAndUpdate(
+            { id: req.params.id }, // Cerca in base al campo auto-incrementato
             req.body,
             { new: true, runValidators: true }
         );
