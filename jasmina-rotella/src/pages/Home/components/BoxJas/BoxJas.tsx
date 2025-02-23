@@ -12,9 +12,9 @@ const BoxJas: React.FC <BoxJasProps> = ({title, description, classStyle}) => {
     return (
         <div className='box-jas'>
             <h1 className={classStyle}>{title}</h1>
-            <p className='description'>
+            <div className='description'>
                 {description}
-            </p>
+            </div>
         </div>
     );
 };

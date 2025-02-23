@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 const SECRET_KEY = process.env.JWT_SECRET || "supersegreto";
 
 const authMiddleware = (req, res, next) => {

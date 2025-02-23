@@ -1,7 +1,7 @@
-const express = require('express');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import User from '../models/User';
 
 const router = express.Router();
 const SECRET_KEY = process.env.JWT_SECRET || "supersegreto";
@@ -34,7 +34,7 @@ router.post('/login', async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ error: "Password errata" });
 
-        const token = jwt.sign({ id: user._id }, SECRET_KEY, { expiresIn: "1h" });
+        const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: "1h" });
 
         res.json({ message: "Login riuscito!", token });
     } catch (error) {

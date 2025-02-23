@@ -1,10 +1,10 @@
-const express = require('express');
-const OfferteLavoro = require('../models/OfferteLavoro');
-const authMiddleware = require('../middleware/authMiddleware');
+import express from 'express';
+import mongoose from 'mongoose';
+import OfferteLavoro from "../models/OfferteLavoro.js";
 
 const router = express.Router();
 
-// ✅ API di ricerca (PRIMA di `/:id` per evitare conflitti)
+// ✅ API di ricerca
 router.get('/search', async (req, res) => {
     try {
         const { query } = req.query;
@@ -13,7 +13,6 @@ router.get('/search', async (req, res) => {
             return res.status(400).json({ error: "Devi specificare un testo di ricerca" });
         }
 
-        // Cerca il testo nel titolo, nella descrizione o nella provincia
         const offerte = await OfferteLavoro.find({
             $or: [
                 { titolo: { $regex: new RegExp(query, "i") } },
@@ -28,7 +27,7 @@ router.get('/search', async (req, res) => {
     }
 });
 
-// ✅ Creare un'offerta (protetta con autenticazione) (, authMiddleware)
+// ✅ Creare un'offerta
 router.post('/', async (req, res) => {
     try {
         const nuovaOfferta = new OfferteLavoro(req.body);
@@ -38,8 +37,6 @@ router.post('/', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-
-
 
 // ✅ Ottenere tutte le offerte
 router.get('/', async (req, res) => {
@@ -51,26 +48,27 @@ router.get('/', async (req, res) => {
     }
 });
 
-// ✅ Ottenere un'offerta per ID (DEVE essere dopo `/search`)
+// ✅ Ottenere un'offerta per ID (Utilizza `_id` di MongoDB)
 router.get('/:id', async (req, res) => {
     try {
-        if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
-            return res.status(400).json({ error: "ID non valido" });
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ error: "ID non valido. Deve essere un ObjectId MongoDB." });
         }
 
         const offerta = await OfferteLavoro.findById(req.params.id);
         if (!offerta) return res.status(404).json({ error: "Offerta non trovata" });
+
         res.json(offerta);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
 
-// ✅ Modificare offerta per ID
+// ✅ Modificare un'offerta per ID
 router.put('/:id', async (req, res) => {
     try {
-        if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
-            return res.status(400).json({ error: "ID non valido" });
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ error: "ID non valido. Deve essere un ObjectId MongoDB." });
         }
 
         const offertaAggiornata = await OfferteLavoro.findByIdAndUpdate(
@@ -89,15 +87,16 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// ✅ Eliminare offerta per ID
+// ✅ Eliminare un'offerta per ID
 router.delete('/:id', async (req, res) => {
     try {
-        if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
-            return res.status(400).json({ error: "ID non valido" });
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ error: "ID non valido. Deve essere un ObjectId MongoDB." });
         }
 
         const offerta = await OfferteLavoro.findByIdAndDelete(req.params.id);
         if (!offerta) return res.status(404).json({ error: "Offerta non trovata" });
+
         res.json({ message: "Offerta eliminata con successo!" });
     } catch (error) {
         res.status(500).json({ error: error.message });
