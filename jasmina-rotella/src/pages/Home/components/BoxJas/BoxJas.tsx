@@ -11,7 +11,7 @@ export interface BoxJasProps {
 const BoxJas: React.FC <BoxJasProps> = ({title, description, classStyle}) => {
     return (
         <div className='box-jas'>
-            <h1 className={classStyle}>{title}</h1>
+            <div className={classStyle}>{title}</div>
             <div className='description'>
                 {description}
             </div>

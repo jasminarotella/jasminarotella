@@ -28,15 +28,16 @@
     background-color: white;
     color: var(--font-color-main);
     min-height: fit-content;
-    overflow: auto;
     margin: 10px;
+    min-width: fit-content;
     border-radius: var(--border-radius-background);
     padding: var(--padding-background);
-    box-shadow: 4px 4px  var(--color3);
+    box-shadow: 4px 4px var(--color3);
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: center;
     gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .title1 {
@@ -45,14 +46,15 @@
     font-family: var(--title-font) !important;
     color: var(--color3) !important;
 }
+
 .title2 {
     text-decoration: none;
     font-size: 1em !important;
     font-family: var(--title-font) !important;
     color: var(--color4) !important;
 }
+
 .description {
     font-family: var(--font-main) !important;
     font-size: 0.9em;
 }
-

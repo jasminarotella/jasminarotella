@@ -1,0 +1,40 @@
+.inputSearch {
+    display: flex;
+    align-items: center;
+    background-color: var(--color5);
+    border-radius: var(--border-radius);
+    height: fit-content;
+    min-height: 80px;
+    color: white;
+    font-size: 1rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+    gap: 10px;
+    padding: 10px;
+
+}
+
+
+
+
+.MuiInputBase-root,
+.MuiTextField-root,
+.MuiAutocomplete-root,
+.MuiFormLabel-root {
+    max-height: 30px;
+    background-color: var(--color4) !important;
+    min-width: 10rem !important;
+    max-width: 10rem;
+    border-radius: 25px !important;
+    margin-right: 10px;
+
+
+}
+label.MuiFormLabel-root, label.MuiFormLabel-root.MuiFocused {
+    display: none;
+}
+
+.filtro {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+}

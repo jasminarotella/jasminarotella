@@ -27,6 +27,16 @@ router.get('/search', async (req, res) => {
     }
 });
 
+router.get("/provinces", async (req, res) => {
+    try {
+        const provinces = await OfferteLavoro.distinct("provincia"); // Estrae province uniche
+        res.json(provinces);
+    } catch (error) {
+        res.status(500).json({ error: "Errore nel recupero delle province" });
+    }
+});
+
+
 // ✅ Creare un'offerta
 router.post('/', async (req, res) => {
     try {
@@ -102,5 +112,7 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+
 
 export default router;

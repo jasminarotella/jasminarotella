@@ -85,19 +85,19 @@
 }
 
 /* Icone e dettagli */
-.offerta .info, .offerta .smartworking {
+.offerta .info {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.offerta .info p, .offerta .smartworking p {
+.offerta .info p{
     font-size: 0.9em;
     color: rgb(118, 118, 118);
     margin-top: 5px;
 }
 
 /* Stile icone */
-.offerta .info i, .offerta .smartworking i {
+.offerta .info i {
     font-size: 1.1em;
     color: var(--color4);
     margin-top: 1.6em;
@@ -174,4 +174,7 @@
     padding: 0.5em;
 }
 
- 
+.description-search {
+    min-width: 100px;
+}
+
