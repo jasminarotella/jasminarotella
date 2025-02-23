@@ -10,7 +10,7 @@ import NavOfferte from './NavOfferte';
 import BoxJas from '../../components/BoxJas/BoxJas';
 
 // Interfaccia per la struttura dell'offerta
-interface Offerta {
+export interface Offerta {
     titolo: string;
     descrizioneBreve: string;
     azienda: string;

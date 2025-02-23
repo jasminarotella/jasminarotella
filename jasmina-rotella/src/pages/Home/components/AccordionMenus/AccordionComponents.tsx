@@ -6,6 +6,7 @@ import GeneratedForm from '../GeneratedForm';
 import CustomButton from '../Button';
 import BoxJas from '../BoxJas/BoxJas';
 import CreaForm from '../CreaForm';
+import EmptyPage from '../EmptyPage/EmptyPage';
 interface FormData {
   id: number;
   nome: string;
@@ -61,7 +62,18 @@ export const AccordionMenuComponents: React.FC = () => {
         </AccordionSummary>
         <AccordionDetails>
           <BoxJas title={'1 - Box Jas'} description={'Description : accetta stringhe'} />
-          <BoxJas title={'2'} description={<BoxJas title={'Box Jas'} description={'o accetta JSX element'}/>} />
+          <BoxJas title={'2'} description={<BoxJas title={'Box Jas'} description={'o accetta JSX element'} />} />
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+          Empty Page
+        </AccordionSummary>
+        <AccordionDetails>
+          <EmptyPage />
         </AccordionDetails>
       </Accordion>
     </div>

@@ -52,7 +52,7 @@ const OfferteList: React.FC = () => {
 
   return (
     <div>
-      <NavOfferte />
+       <NavOfferte />
       <div className="search-box-lavoro">
         <BoxJas
           title={
