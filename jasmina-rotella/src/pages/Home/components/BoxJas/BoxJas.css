@@ -6,7 +6,7 @@
     box-sizing: border-box;
     --color1: #F4F4ED;
     --color2: #72DDF7;
-    --color3: #8093F1;
+    --color3: #2139b2;
     --color4: #B388EB;
     --color5: #F7AEF8;
     --title-font: 'Libre Baskerville', serif;
@@ -28,7 +28,7 @@
     background-color: white;
     color: var(--font-color-main);
     min-height: fit-content;
-    margin: 10px;
+    margin-bottom: 20px;
     min-width: fit-content;
     border-radius: var(--border-radius-background);
     padding: var(--padding-background);
@@ -42,7 +42,7 @@
 
 .title1 {
     text-decoration: none;
-    font-size: 1.1em !important;
+    font-size: 1.9em !important;
     font-family: var(--title-font) !important;
     color: var(--color3) !important;
 }

@@ -19,22 +19,28 @@
 .MuiInputBase-root,
 .MuiTextField-root,
 .MuiAutocomplete-root,
-.MuiFormLabel-root {
+.MuiFormLabel-root{
     max-height: 30px;
     background-color: var(--color4) !important;
     min-width: 10rem !important;
     max-width: 10rem;
     border-radius: 25px !important;
     margin-right: 10px;
-
+    color: white !important;
+   
 
 }
-label.MuiFormLabel-root, label.MuiFormLabel-root.MuiFocused {
-    display: none;
+
+
+.css-113d811-MuiFormLabel-root-MuiInputLabel-root.Mui-focused, .css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root {
+    display: none !important;
 }
+
+
 
 .filtro {
     display: flex;
     flex-direction: row !important;
     align-items: center;
 }
+

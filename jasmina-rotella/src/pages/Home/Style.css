@@ -22,6 +22,13 @@
     --button-color: var(--color5);
     --margin-label: 20px;
     --margin-input: 5px;
+    
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .home {
@@ -29,10 +36,11 @@
     color: var(--font-color-main);
     font-family: var(--font-main);
     min-height: var(--height-background);
-    min-width: fit-content;
-    max-width: var(--width-background);
+    max-width: fit-content;
+    min-width: 100%;
     border-radius: var(--border-radius-background);
     padding: var(--padding-background);
+   
 }
 
 .home h1,h2,h3 {
