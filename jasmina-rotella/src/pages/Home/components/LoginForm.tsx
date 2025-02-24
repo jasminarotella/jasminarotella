@@ -63,13 +63,14 @@ const LoginForm: React.FC = () => {
             inputAccount.nomeutente === user.nomeutente &&
             inputAccount.password === user.password
         ) {
-            console.log("Credenziali giuste");
+            // console.log("Credenziali giuste");
             setCredenzialiGiuste(true);
             // Ad esempio, per reindirizzare dopo il login:
             // navigate('/dashboard');
-        } else {
-            console.log("Credenziali errate");
-        }
+        } 
+        // else {
+        //     console.log("Credenziali errate");
+        // }
     };
 
     //se sono giuste naviga alla pagina giusta

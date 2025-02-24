@@ -1,0 +1,66 @@
+.container-grid {
+    display: grid !important;
+    /* 2 colonne × 2 righe */
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: 1fr 1fr !important;
+    
+    /* Definiamo le aree di griglia */
+    grid-template-areas:
+      "header nav"
+      "main footer" !important;
+    
+    gap: 20px !important;
+    max-width: 1200px !important;
+    margin: 20px auto !important;
+    min-height: 80vh !important;
+    background-color: #f4f4f4 !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Forziamo ogni box a stare in una cella diversa */
+  .page-header {
+    grid-area: header !important;
+    background-color: white !important;
+    border-radius: 10px !important;
+    padding: 20px !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+  }
+  
+  .page-nav {
+    grid-area: nav !important;
+    background-color: white !important;
+    border-radius: 10px !important;
+    padding: 20px !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+  }
+  
+  .page-main {
+    grid-area: main !important;
+    background-color: white !important;
+    border-radius: 10px !important;
+    padding: 20px !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+  }
+  
+  .page-footer {
+    grid-area: footer !important;
+    background-color: white !important;
+    border-radius: 10px !important;
+    padding: 20px !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+  }
+  
+  /* Adattamento responsive: 4 righe in colonna su schermi stretti */
+  @media (max-width: 768px) {
+    .container-grid {
+      grid-template-columns: 1fr !important;
+      grid-template-rows: auto auto auto auto !important;
+      grid-template-areas:
+        "header"
+        "nav"
+        "main"
+        "footer" !important;
+    }
+  }
+  
