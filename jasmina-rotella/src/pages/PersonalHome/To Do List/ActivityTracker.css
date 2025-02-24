@@ -1,0 +1,89 @@
+.activity-tracker-container {
+    max-width: 600px;
+    margin: 20px auto;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .activity-tracker-container h2 {
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+  }
+  
+  select, input[type="text"], textarea, input[type="time"] {
+    width: 100%;
+    margin: 5px 0 10px;
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  /* Box non condizionale */
+  .universal-box {
+    background: #fff;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 6px;
+  }
+  
+  .universal-box textarea {
+    min-height: 60px;
+    resize: vertical;
+  }
+  
+  .time-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .duration-info {
+    font-style: italic;
+    color: #444;
+  }
+  
+  .btn-add {
+    background-color: #ff66cc;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-add:hover {
+    background-color: #ff4cb2;
+  }
+  
+  .success-message {
+    margin-top: 15px;
+    color: green;
+    font-weight: bold;
+  }
+  
+  /* Stile del sotto-componente pasti */
+  .pasti-tracker-container {
+    background: #eee;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 6px;
+  }
+  
+  .pasti-tracker-container h3 {
+    margin-bottom: 10px;
+  }
+  
