@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BoxJas from './BoxJas/BoxJas';
 import CustomButton from './Button';
 import { userSchema } from '../../../types/user';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const LoginForm: React.FC = () => {
     const formStyle: React.CSSProperties = {
@@ -33,7 +33,7 @@ const LoginForm: React.FC = () => {
         justifyContent: 'center'
     };
 
-    const navigate = useNavigate();
+
 
     // Credenziali "corrette" hard-coded
     const [user] = useState<userSchema>({
@@ -55,6 +55,7 @@ const LoginForm: React.FC = () => {
             [id]: value,
         }));
     };
+    const navigate = useNavigate();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -70,6 +71,13 @@ const LoginForm: React.FC = () => {
             console.log("Credenziali errate");
         }
     };
+
+    //se sono giuste naviga alla pagina giusta
+    useEffect(() => {
+        if (credenzialiGiuste) {
+            navigate("/jashome")
+        }
+    })
 
     return (
         <BoxJas title={
@@ -102,6 +110,7 @@ const LoginForm: React.FC = () => {
                     </div>
                     <CustomButton type='submit'>Login</CustomButton>
                 </form>
+
             </>
         } />
     );
