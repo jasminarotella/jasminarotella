@@ -77,6 +77,7 @@ const LoginForm: React.FC = () => {
         if (credenzialiGiuste) {
             navigate("/jashome")
         }
+
     })
 
     return (
@@ -109,8 +110,8 @@ const LoginForm: React.FC = () => {
                         />
                     </div>
                     <CustomButton type='submit'>Login</CustomButton>
+                {!credenzialiGiuste && <h4>Credenziali errate, riprova</h4>}
                 </form>
-
             </>
         } />
     );
