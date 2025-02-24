@@ -1,0 +1,82 @@
+/* Contenitore principale */
+.todolist-container {
+    width: 100%;
+    max-width: 100%;
+    background: #f0f0f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0 auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Titolo */
+  .title-todolist {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  
+  /* Form per aggiungere task */
+  .form-style {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Input testo */
+  .input-text {
+    flex: 1;
+    padding: 5px;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color1);
+    color: black;
+  }
+  
+
+  /* Lista dei task */
+  .tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Singolo task */
+  .task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 0.8em;
+  }
+  
+  /* Parte sinistra del task (checkbox + testo) */
+  .task-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Testo completato */
+  .task-text.done {
+    text-decoration: line-through;
+    color: #999;
+  }
+  
+  /* Input durante la modifica */
+  .edit-input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  

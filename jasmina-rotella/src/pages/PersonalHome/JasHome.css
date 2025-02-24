@@ -22,7 +22,7 @@
   .page-header {
     grid-area: header !important;
     background-color: white !important;
-    border-radius: 10px !important;
+    border-radius: var(--border-radius-background);
     padding: 20px !important;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
   }
@@ -30,7 +30,7 @@
   .page-nav {
     grid-area: nav !important;
     background-color: white !important;
-    border-radius: 10px !important;
+    border-radius: var(--border-radius-background);
     padding: 20px !important;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
   }
@@ -38,7 +38,7 @@
   .page-main {
     grid-area: main !important;
     background-color: white !important;
-    border-radius: 10px !important;
+    border-radius: var(--border-radius-background);
     padding: 20px !important;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
   }
@@ -46,7 +46,7 @@
   .page-footer {
     grid-area: footer !important;
     background-color: white !important;
-    border-radius: 10px !important;
+    border-radius: var(--border-radius-background);
     padding: 20px !important;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
   }

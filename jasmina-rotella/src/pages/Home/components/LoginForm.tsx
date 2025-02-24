@@ -30,7 +30,9 @@ const LoginForm: React.FC = () => {
         borderRadius: 'var(--border-radius)',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        padding: '5px'
+
     };
 
 
