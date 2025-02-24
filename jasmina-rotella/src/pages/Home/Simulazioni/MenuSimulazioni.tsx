@@ -13,6 +13,9 @@ export const MenuSimulazioni: React.FC = () => {
       <Link to="/#">
         <CustomButton className="button-jas">Esami e Studenti</CustomButton>
       </Link>
+      <Link to="/#">
+        <CustomButton className="button-jas">Template vuoto</CustomButton>
+      </Link>
     </div>
 
   );

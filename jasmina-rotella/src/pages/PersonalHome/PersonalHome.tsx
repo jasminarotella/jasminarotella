@@ -13,7 +13,9 @@ const PersonalHome: React.FC = () => {
                 title={"Bentornata Jas"}
                 description={
                     <div className='login'>
+                        <Link to={'/loginform'}>
                         <CustomButton>Accedi</CustomButton>
+                        </Link>
                     </div>
                 }
             />
