@@ -17,7 +17,7 @@ const RimuoviOfferta: React.FC = () => {
   // Carica tutte le offerte all'avvio
   const fetchData = async () => {
     try {
-      const response = await axios.get<Offerta[]>("http:///api/offerte");
+      const response = await axios.get<Offerta[]>("/api/offerte");
       setOfferte(response.data);
       setOfferteFiltrate(response.data);
       // Estrae le province uniche

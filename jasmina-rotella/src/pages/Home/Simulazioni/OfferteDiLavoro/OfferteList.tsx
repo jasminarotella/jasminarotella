@@ -17,7 +17,7 @@ const OfferteList: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<Offerta[]>("http:///api/offerte");
+        const response = await axios.get<Offerta[]>("/api/offerte");
         console.log("✅ Dati ricevuti dal backend:", response.data);
         setOfferte(response.data);
         setOfferteFiltrate(response.data);
