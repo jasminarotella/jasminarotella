@@ -51,7 +51,7 @@ const RimuoviOfferta: React.FC = () => {
   const handleDelete = async (offerta: Offerta) => {
     const identifier = offerta.id; // usa il campo auto-increment "id"
     try {
-      await axios.delete(`http:///api/offerte/${identifier}`);
+      await axios.delete(`/api/offerte/${identifier}`);
       alert(`Offerta "${offerta.titolo}" eliminata con successo!`);
       fetchData();
     } catch (error) {
