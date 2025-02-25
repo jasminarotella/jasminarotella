@@ -25,7 +25,7 @@ const ModificaOfferta: React.FC = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get<Offerta[]>("/api/offerte");
+            const response = await axios.get<Offerta[]>("/offerte");
             setOfferte(response.data);
             setOfferteFiltrate(response.data);
             const uniqueProvinces = Array.from(new Set(response.data.map(offerta => offerta.provincia)));
@@ -77,7 +77,7 @@ const ModificaOfferta: React.FC = () => {
             // Usa selectedOfferta.id se esiste, altrimenti usa selectedOfferta._id
             const identifier = selectedOfferta.id ?? selectedOfferta.id;
             try {
-                await axios.put(`/api/offerte/${identifier}`, selectedOfferta);
+                await axios.put(`/offerte/${identifier}`, selectedOfferta);
                 alert("Offerta aggiornata con successo!");
                 setSelectedOfferta(null);
                 fetchData();

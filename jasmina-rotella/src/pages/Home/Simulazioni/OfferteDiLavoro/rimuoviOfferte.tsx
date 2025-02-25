@@ -17,7 +17,7 @@ const RimuoviOfferta: React.FC = () => {
   // Carica tutte le offerte all'avvio
   const fetchData = async () => {
     try {
-      const response = await axios.get<Offerta[]>("/api/offerte");
+      const response = await axios.get<Offerta[]>("/offerte");
       setOfferte(response.data);
       setOfferteFiltrate(response.data);
       // Estrae le province uniche
@@ -51,7 +51,7 @@ const RimuoviOfferta: React.FC = () => {
   const handleDelete = async (offerta: Offerta) => {
     const identifier = offerta.id; // usa il campo auto-increment "id"
     try {
-      await axios.delete(`/api/offerte/${identifier}`);
+      await axios.delete(`/offerte/${identifier}`);
       alert(`Offerta "${offerta.titolo}" eliminata con successo!`);
       fetchData();
     } catch (error) {

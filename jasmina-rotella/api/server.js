@@ -18,7 +18,7 @@ app.use(express.json());
 
 // Rotte con prefisso /api
 app.use('/api/auth', authRoutes);
-app.use('/api/offerte', offerteRoutes);
+app.use('offerte', offerteRoutes);
 app.use('/api/users', authRoutes); 
 
 // Non usare app.listen() in ambiente serverless
