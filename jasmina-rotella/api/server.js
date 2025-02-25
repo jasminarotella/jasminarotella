@@ -5,6 +5,7 @@ import connectDB from './config/db.js';
 import authRoutes from './routes/auth.js'; 
 import offerteRoutes from './routes/offerte.js';
 
+
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -19,6 +20,8 @@ app.use('/auth', authRoutes);
 app.use('/offerte', offerteRoutes);
 app.use('/users', authRoutes); 
 
-app.listen(PORT, () => {
-    console.log(`🚀 Server in ascolto su http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`🚀 Server in ascolto su http://localhost:${PORT}`);
+// });
+
+// export default serverless(app);
