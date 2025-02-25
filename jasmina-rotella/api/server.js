@@ -16,9 +16,9 @@ app.use(cors());
 app.use(express.json());
 
 // ✅ Importa la route utenti
-app.use('/auth', authRoutes);
-app.use('/offerte', offerteRoutes);
-app.use('/users', authRoutes); 
+app.use('/api/auth', authRoutes);
+app.use('/api/offerte', offerteRoutes);
+app.use('/api/users', authRoutes); 
 
 // app.listen(PORT, () => {
 //     console.log(`🚀 Server in ascolto su http://localhost:${PORT}`);
