@@ -4,25 +4,24 @@ import cors from 'cors';
 import connectDB from './config/db.js'; 
 import authRoutes from './routes/auth.js'; 
 import offerteRoutes from './routes/offerte.js';
-import ServerlessHttp from 'serverless-http';
-
+import serverless from 'serverless-http';
 
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 5001;
 
+// Connessione al DB
 connectDB();
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// ✅ Importa la route utenti
+// Rotte con prefisso /api
 app.use('/api/auth', authRoutes);
 app.use('/api/offerte', offerteRoutes);
 app.use('/api/users', authRoutes); 
 
-// app.listen(PORT, () => {
-//     console.log(`🚀 Server in ascolto su http://localhost:${PORT}`);
-// });
+// Non usare app.listen() in ambiente serverless
+// app.listen(PORT, () => console.log(...));
 
-// export default serverless(app);
+export default serverless(app);
