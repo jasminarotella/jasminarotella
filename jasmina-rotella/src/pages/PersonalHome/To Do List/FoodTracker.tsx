@@ -9,6 +9,7 @@ interface PastoEntry {
   fruttaVerdura: string;
   dolci: string;
   fastfood: string;
+  bevande: string;
   notes: string;
   startTime: string;
   endTime: string;
@@ -47,6 +48,7 @@ const FoodTracker: React.FC = () => {
           <p><strong>Frutta e Verdura:</strong> {pasto.fruttaVerdura}</p>
           <p><strong>Dolci:</strong> {pasto.dolci}</p>
           <p><strong>Fast Food:</strong> {pasto.fastfood}</p>
+          <p><strong>Bevande:</strong> {pasto.fastfood}</p>
           <p><strong>Note:</strong> {pasto.notes}</p>
           <p>
             <strong>Orario:</strong> {pasto.startTime} - {pasto.endTime} 
