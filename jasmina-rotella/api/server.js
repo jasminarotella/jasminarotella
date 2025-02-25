@@ -4,6 +4,7 @@ import cors from 'cors';
 import connectDB from './config/db.js'; 
 import authRoutes from './routes/auth.js'; 
 import offerteRoutes from './routes/offerte.js';
+import ServerlessHttp from 'serverless-http';
 
 
 dotenv.config();

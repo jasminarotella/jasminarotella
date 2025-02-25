@@ -46,7 +46,7 @@ const AggiungiOfferta: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:5001/offerte", offerta);
+            const response = await axios.post("http://localhost:5001/api/offerte", offerta);
             console.log("✅ Offerta aggiunta:", response.data);
             alert("Offerta aggiunta con successo!");
             setOfferta({
