@@ -4,7 +4,7 @@ import User from "../models/User.js"; // Importa il modello User
 const router = express.Router();
 
 // ✅ Route per aggiungere un utente (POST)
-router.post("/users", async (req, res) => {
+router.post("/api/users", async (req, res) => {
   try {
     const { nomeutente, email, password } = req.body;
 
@@ -21,7 +21,7 @@ router.post("/users", async (req, res) => {
   }
 });
 
-router.get("/users", async (req, res) => {
+router.get("/api/users", async (req, res) => {
   try {
     const users = await User.find();
     res.status(200).json(users);

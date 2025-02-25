@@ -5,7 +5,7 @@ import OfferteLavoro from "../models/OfferteLavoro.js";
 const router = express.Router();
 
 // API di ricerca
-router.get('/search', async (req, res) => {
+router.get('/api/search', async (req, res) => {
     try {
         const { query } = req.query;
         if (!query || query.trim() === "") {
@@ -34,7 +34,7 @@ router.get("/provinces", async (req, res) => {
 });
 
 // Creare un'offerta
-router.post('/', async (req, res) => {
+router.post('/api/', async (req, res) => {
     try {
         const nuovaOfferta = new OfferteLavoro(req.body);
         await nuovaOfferta.save();
@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
 });
 
 // Ottenere tutte le offerte
-router.get('/', async (req, res) => {
+router.get('/api/', async (req, res) => {
     try {
         const offerte = await OfferteLavoro.find().sort({ dataInserimento: -1 });
         res.json(offerte);
