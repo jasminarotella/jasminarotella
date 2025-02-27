@@ -7,6 +7,7 @@ import CustomButton from '../Button';
 import BoxJas from '../BoxJas/BoxJas';
 import CreaForm from '../CreaForm';
 import EmptyPage from '../EmptyPage/EmptyPage';
+import RatioMockupScriptPanel from '../PS_scripts.tsx/RatioMockup';
 interface FormData {
   id: number;
   nome: string;
@@ -20,6 +21,17 @@ export const AccordionMenuComponents: React.FC = () => {
   return (
 
     <div className='accordion-components'>
+      <Accordion>
+        <AccordionSummary
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+          Ratio Mockup Script
+        </AccordionSummary>
+        <AccordionDetails>
+          <RatioMockupScriptPanel/>
+        </AccordionDetails>
+      </Accordion>
       <Accordion>
         <AccordionSummary
           aria-controls="panel1-content"
