@@ -12,12 +12,13 @@ const OfferteList: React.FC = () => {
   const [query, setQuery] = useState<string>("");
   const [provincia, setProvincia] = useState<string>("");
   const [provinceList, setProvinceList] = useState<string[]>([]);
+  const API_URL = "https://jasminarotella.onrender.com";
 
   // 🔄 Recupera le offerte dal backend ed estrae le province uniche dalle offerte
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<Offerta[]>("http://localhost:5001/offerte");
+        const response = await axios.get<Offerta[]>(`${API_URL}/offerte`);
         console.log("✅ Dati ricevuti dal backend:", response.data);
         setOfferte(response.data);
         setOfferteFiltrate(response.data);

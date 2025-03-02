@@ -41,12 +41,13 @@ const AggiungiOfferta: React.FC = () => {
             [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value
         }));
     };
+    const API_URL = "https://jasminarotella.onrender.com";
 
     // Funzione per gestire l'invio del form
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        const response = await axios.get<Offerta[]>(`${API_URL}/offerte`);
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:5001/offerte", offerta);
             console.log("✅ Offerta aggiunta:", response.data);
             alert("Offerta aggiunta con successo!");
             setOfferta({

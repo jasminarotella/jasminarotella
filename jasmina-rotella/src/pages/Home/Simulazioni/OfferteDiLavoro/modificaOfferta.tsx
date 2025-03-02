@@ -22,10 +22,11 @@ const ModificaOfferta: React.FC = () => {
     // Indica se è stata eseguita una ricerca
     const [searchPerformed, setSearchPerformed] = useState<boolean>(false);
     const [selectedOfferta, setSelectedOfferta] = useState<Offerta | null>(null);
+    const API_URL = "https://jasminarotella.onrender.com";
 
     const fetchData = async () => {
         try {
-            const response = await axios.get<Offerta[]>("http://localhost:5001/offerte");
+            const response = await axios.get<Offerta[]>(`${API_URL}/offerte`);
             setOfferte(response.data);
             setOfferteFiltrate(response.data);
             const uniqueProvinces = Array.from(new Set(response.data.map(offerta => offerta.provincia)));
@@ -69,7 +70,8 @@ const ModificaOfferta: React.FC = () => {
             });
         }
     };
-
+    
+    
     // Aggiorna l'offerta tramite PUT
     const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -77,7 +79,9 @@ const ModificaOfferta: React.FC = () => {
             // Usa selectedOfferta.id se esiste, altrimenti usa selectedOfferta._id
             const identifier = selectedOfferta.id ?? selectedOfferta.id;
             try {
-                await axios.put(`http://localhost:5001/offerte/${identifier}`, selectedOfferta);
+                const API_URL = "https://jasminarotella.onrender.com";
+                await 
+                axios.put(`${API_URL}/offerte/${identifier}`, selectedOfferta);
                 alert("Offerta aggiornata con successo!");
                 setSelectedOfferta(null);
                 fetchData();

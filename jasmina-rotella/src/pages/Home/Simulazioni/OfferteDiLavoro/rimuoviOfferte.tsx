@@ -17,8 +17,9 @@ const RimuoviOfferta: React.FC = () => {
   // Carica tutte le offerte all'avvio
   const fetchData = async () => {
     try {
-      const response = await axios.get<Offerta[]>("http://localhost:5001/offerte");
-      setOfferte(response.data);
+      const API_URL = "https://jasminarotella.onrender.com";
+
+      const response = await axios.get<Offerta[]>(`${API_URL}/offerte`);            setOfferte(response.data);
       setOfferteFiltrate(response.data);
       // Estrae le province uniche
       const uniqueProvinces = Array.from(new Set(response.data.map(offerta => offerta.provincia)));
@@ -51,7 +52,8 @@ const RimuoviOfferta: React.FC = () => {
   const handleDelete = async (offerta: Offerta) => {
     const identifier = offerta.id; // usa il campo auto-increment "id"
     try {
-      await axios.delete(`http://localhost:5001/offerte/${identifier}`);
+      const API_URL = "https://jasminarotella.onrender.com";
+      await axios.delete(`${API_URL}/offerte/${identifier}`);
       alert(`Offerta "${offerta.titolo}" eliminata con successo!`);
       fetchData();
     } catch (error) {
