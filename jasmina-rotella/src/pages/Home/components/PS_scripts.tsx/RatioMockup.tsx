@@ -1,125 +1,119 @@
 import { useState } from "react";
 
 const RatioMockupScriptPanel = () => {
-  const [pngFolder, setPngFolder] = useState("");
-  const [psdFolder, setPsdFolder] = useState("");
-  const [outputFolder, setOutputFolder] = useState("");
   const [log, setLog] = useState("");
 
-  // Usa window.uxp se disponibile, altrimenti null.
-  const uxp = typeof window !== "undefined" && (window as any).uxp ? (window as any).uxp : null;
-
-  // Funzione per selezionare una cartella usando le API UXP
-  const selectFolder = async (folderType: string) => {
-    try {
-      if (!uxp) {
-        throw new Error("UXP non disponibile. Questo plugin deve essere eseguito in Photoshop.");
-      }
-      const fs = uxp.storage.localFileSystem;
-      const folder = await fs.getFolder(); // Apre il selettore cartelle
-      if (folder) {
-        const folderPath = await folder.nativePath;
-        if (folderType === "png") setPngFolder(folderPath);
-        else if (folderType === "psd") setPsdFolder(folderPath);
-        else if (folderType === "output") setOutputFolder(folderPath);
-      }
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error("Errore selezione cartella:", error.message);
-        setLog((prevLog) => prevLog + `\nErrore selezione cartella: ${error.message}`);
-      } else {
-        console.error("Errore sconosciuto durante la selezione cartella.");
-        setLog((prevLog) => prevLog + "\nErrore sconosciuto durante la selezione cartella.");
-      }
-    }
+  const appendLog = (text: string) => {
+    setLog((prev) => prev + "\n" + text);
   };
 
-  // Funzione per eseguire uno script in Photoshop
-  const runScript = async (scriptName: string) => {
+  const runRatioMockup = async () => {
     try {
-      if (!uxp) {
-        throw new Error("UXP non disponibile. Questo plugin deve essere eseguito in Photoshop.");
+      // Verifica se UXP è disponibile
+      const uxp = (window as any).uxp;
+      if (!uxp) throw new Error("UXP non disponibile. Il plugin deve essere eseguito in Photoshop.");
+      
+      const fs = uxp.storage.localFileSystem;
+
+      // ---- Seleziona cartella PNG ----
+      appendLog("Seleziona la cartella contenente i file PNG...");
+      const pngFolder = await fs.getFolder();
+      if (!pngFolder) throw new Error("Nessuna cartella PNG selezionata.");
+      const pngEntries = await pngFolder.getEntries();
+      const pngFiles = pngEntries.filter((entry: any) => entry.isFile && entry.name.toLowerCase().endsWith(".png"));
+      if (pngFiles.length < 1) throw new Error("Nessun file PNG trovato.");
+
+      // ---- Seleziona cartella PSD ----
+      appendLog("Seleziona la cartella contenente i file PSD...");
+      const psdFolder = await fs.getFolder();
+      if (!psdFolder) throw new Error("Nessuna cartella PSD selezionata.");
+      const psdEntries = await psdFolder.getEntries();
+      const psdFiles = psdEntries.filter((entry: any) => entry.isFile && entry.name.toLowerCase().endsWith(".psd"));
+      if (psdFiles.length < 1) throw new Error("Nessun file PSD trovato.");
+
+      // ---- Seleziona cartella di Output ----
+      appendLog("Seleziona la cartella di destinazione per i file finali...");
+      const outputFolder = await fs.getFolder();
+      if (!outputFolder) throw new Error("Nessuna cartella di output selezionata.");
+
+      // ---- Crea le cartelle "m-1", "m-2", ... e "m-set" ----
+      for (let i = 0; i < pngFiles.length; i++) {
+        const subfolderName = "m-" + (i + 1);
+        let subfolder;
+        try {
+          subfolder = await outputFolder.getEntry(subfolderName);
+        } catch {
+          subfolder = await outputFolder.createFolder(subfolderName);
+        }
+        appendLog(`Cartella creata: ${subfolderName}`);
       }
+      let multiFolder;
+      try {
+        multiFolder = await outputFolder.getEntry("m-set");
+      } catch {
+        multiFolder = await outputFolder.createFolder("m-set");
+      }
+      appendLog("Cartella creata: m-set");
+
+      // ---- Ottieni l'API di Photoshop ----
       const { photoshop } = uxp;
-      if (!photoshop) {
-        throw new Error("Modulo Photoshop non disponibile.");
-      }
-      if (scriptName === "insertAndResize") {
-        const activeDoc = photoshop.app.activeDocument;
-        if (!activeDoc) throw new Error("Nessun documento aperto");
+      if (!photoshop) throw new Error("Modulo Photoshop non disponibile.");
+
+      // ---- Processa ogni file PSD ----
+      for (let i = 0; i < psdFiles.length; i++) {
+        const psdFile = psdFiles[i];
+        appendLog(`Apro il file PSD: ${psdFile.name}`);
+        // Apri il documento PSD (nota: photoshop.app.open accetta il percorso nativo)
+        const doc = await photoshop.app.open(psdFile.nativePath);
         // Esempio: ridimensiona l'immagine a 800x600
-        activeDoc.resizeImage(800, 600);
-        setLog((prevLog) => prevLog + "\nInsert & Resize completato!");
+        await doc.resizeImage(800, 600);
+        appendLog(`Documento ridimensionato: ${psdFile.name}`);
+        // Salva il documento come JPEG nella cartella m-set
+        const outputName = psdFile.name.replace(".psd", ".jpg");
+        const outputPath = multiFolder.nativePath + "/" + outputName;
+        // Esegui una chiamata batchPlay per salvare come JPEG (questo è un esempio semplificato)
+        await photoshop.action.batchPlay(
+          [
+            {
+              _obj: "save",
+              as: {
+                _obj: "JPEGSaveOptions",
+                quality: 7,
+              },
+              in: outputPath,
+              documentID: doc.documentID,
+              _isCommand: true,
+              _options: { dialogOptions: "dontDisplay" },
+            },
+          ],
+          { synchronousExecution: true }
+        );
+        appendLog(`Documento salvato come JPEG: ${outputPath}`);
+        await doc.closeWithoutSaving();
       }
-      if (scriptName === "automazioneMockup") {
-        // Inserisci qui la logica per l'automazione del mockup
-        setLog((prevLog) => prevLog + "\nAutomazione Mockup eseguita!");
-      }
+
+      appendLog("Operazione completata!");
     } catch (error: unknown) {
       if (error instanceof Error) {
-        console.error(`Errore nello script ${scriptName}:`, error.message);
-        setLog((prevLog) => prevLog + `\nErrore: ${error.message}`);
+        appendLog("Errore: " + error.message);
+        console.error("Errore in runRatioMockup:", error);
       } else {
-        console.error("Errore sconosciuto.");
-        setLog((prevLog) => prevLog + `\nErrore sconosciuto durante ${scriptName}.`);
+        appendLog("Errore sconosciuto.");
       }
     }
   };
 
   return (
     <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-      <h2>Photoshop Automation Panel</h2>
-
-      {/* Selettori cartelle */}
-      <div style={{ marginBottom: "10px" }}>
-        <label>PNG Folder: </label>
-        <input
-          type="text"
-          value={pngFolder}
-          readOnly
-          style={{ width: "300px", marginRight: "10px" }}
-        />
-        <button onClick={() => selectFolder("png")}>Select PNG Folder</button>
-      </div>
-      <div style={{ marginBottom: "10px" }}>
-        <label>PSD Folder: </label>
-        <input
-          type="text"
-          value={psdFolder}
-          readOnly
-          style={{ width: "300px", marginRight: "10px" }}
-        />
-        <button onClick={() => selectFolder("psd")}>Select PSD Folder</button>
-      </div>
-      <div style={{ marginBottom: "10px" }}>
-        <label>Output Folder: </label>
-        <input
-          type="text"
-          value={outputFolder}
-          readOnly
-          style={{ width: "300px", marginRight: "10px" }}
-        />
-        <button onClick={() => selectFolder("output")}>Select Output Folder</button>
-      </div>
-
-      {/* Bottoni per eseguire gli script */}
-      <div style={{ marginTop: "20px" }}>
-        <button onClick={() => runScript("insertAndResize")} style={{ marginRight: "10px" }}>
-          Run Insert & Resize
-        </button>
-        <button onClick={() => runScript("automazioneMockup")} style={{ marginRight: "10px" }}>
-          Run Automazione Mockup
-        </button>
-      </div>
-
-      {/* Log output */}
+      <h2>Plugin Ratio Mockup (UXP)</h2>
+      <button onClick={runRatioMockup}>Esegui Ratio Mockup</button>
       <div
         style={{
           marginTop: "20px",
           border: "1px solid #ccc",
           padding: "10px",
-          height: "150px",
-          overflow: "auto"
+          height: "300px",
+          overflow: "auto",
         }}
       >
         <h3>Log</h3>

@@ -1,162 +1,148 @@
-import React, { useEffect, useState } from "react";
-import "./ToDoList.css"; // File CSS allegato in fondo
-import CustomButton from "../../Home/components/Button";
+import React, { useState, FormEvent } from "react";
 
-interface Task {
+// Interfaccia Task
+export interface Task {
   id: number;
+  programmata: boolean;
+  data: string; // es: '2025-03-02'
   text: string;
   done: boolean;
 }
 
-function getCurrentDayKey() {
-  // Restituisce la data nel formato "YYYY-MM-DD"
-  const now = new Date();
-  return now.toISOString().split("T")[0];
+// Interfaccia Calendario
+export interface Calendario {
+  data: string; // es: '2025-03-02'
+  taskProgrammate: Task[];
+  taskGiornaliere: Task[];
+  archiviate: Task[];
 }
 
-const ToDoList: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [inputValue, setInputValue] = useState("");
-  
-  // Per la funzionalità "modifica"
-  const [editingTaskId, setEditingTaskId] = useState<number | null>(null);
-  const [editValue, setEditValue] = useState("");
+// Props per il nostro componente ToDoList
+interface ToDoListProps {
+  calendario: Calendario[];
+  selectedDate: string;
+  setCalendario: React.Dispatch<React.SetStateAction<Calendario[]>>;
+}
 
-  // ▶️ Al montaggio, carica i task dal localStorage se la data è la stessa
-  //   Altrimenti, svuota tutto e imposta la data corrente
-  useEffect(() => {
-    const storedDay = localStorage.getItem("dayKey");
-    const storedTasks = localStorage.getItem("tasks");
-    const currentDay = getCurrentDayKey();
+const ToDoList: React.FC<ToDoListProps> = ({ calendario, selectedDate, setCalendario }) => {
+  const [newTaskText, setNewTaskText] = useState("");
+  const [newTaskProgrammata, setNewTaskProgrammata] = useState("");
+  const [taskDate, setTaskDate] = useState("");
+  const [editingTask, setEditingTask] = useState<Task | null>(null);
+  const [editedText, setEditedText] = useState("");
 
-    if (storedDay === currentDay && storedTasks) {
-      setTasks(JSON.parse(storedTasks));
-    } else {
-      localStorage.setItem("dayKey", currentDay);
-      localStorage.removeItem("tasks");
-    }
-
-    // ▶️ Ogni minuto, controlla se è cambiata la data
-    const intervalId = setInterval(() => {
-      const nowDay = getCurrentDayKey();
-      const localDay = localStorage.getItem("dayKey");
-
-      // Se la data è cambiata, resetta tutto
-      if (nowDay !== localDay) {
-        setTasks([]);
-        localStorage.setItem("dayKey", nowDay);
-        localStorage.removeItem("tasks");
-      }
-    }, 60000);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
-  // ▶️ Salva i task in localStorage ogni volta che cambiano
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
-
-  // Aggiunge un nuovo task
-  const handleAddTask = (e: React.FormEvent) => {
+  const handleAddTaskProgrammata = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!inputValue.trim()) return;
+    if (!newTaskProgrammata.trim() || !taskDate.trim()) return;
 
     const newTask: Task = {
       id: Date.now(),
-      text: inputValue.trim(),
+      programmata: true,
+      data: taskDate,
+      text: newTaskProgrammata,
       done: false,
     };
-    setTasks((prev) => [...prev, newTask]);
-    setInputValue("");
+
+    setCalendario((prev) => {
+      const updatedCalendario = prev.map((day) =>
+        day.data === taskDate
+          ? { ...day, taskProgrammate: [...day.taskProgrammate, newTask] }
+          : day
+      );
+
+      return prev.some((day) => day.data === taskDate)
+        ? updatedCalendario
+        : [...updatedCalendario, { data: taskDate, taskProgrammate: [newTask], taskGiornaliere: [], archiviate: [] }];
+    });
+
+    setNewTaskProgrammata("");
+    setTaskDate("");
   };
 
-  // Segna come fatto / non fatto
-  const handleToggleDone = (id: number) => {
-    setTasks((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
+  const handleEditTask = (task: Task) => {
+    setEditingTask(task);
+    setEditedText(task.text);
+  };
+
+  const handleSaveTask = () => {
+    if (!editingTask || !editedText.trim()) return;
+
+    setCalendario((prev) =>
+      prev.map((day) =>
+        day.data === editingTask.data
+          ? {
+              ...day,
+              taskProgrammate: day.taskProgrammate.map((t) =>
+                t.id === editingTask.id ? { ...t, text: editedText } : t
+              ),
+              taskGiornaliere: day.taskGiornaliere.map((t) =>
+                t.id === editingTask.id ? { ...t, text: editedText } : t
+              ),
+              archiviate: day.archiviate.map((t) =>
+                t.id === editingTask.id ? { ...t, text: editedText } : t
+              ),
+            }
+          : day
+      )
     );
-  };
-
-  // Inizia la modifica di un task
-  const handleEditTask = (id: number) => {
-    const taskToEdit = tasks.find((t) => t.id === id);
-    if (!taskToEdit) return;
-    setEditingTaskId(id);
-    setEditValue(taskToEdit.text);
-  };
-
-  // Salva la modifica
-  const handleSaveTask = (id: number) => {
-    setTasks((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, text: editValue } : t))
-    );
-    setEditingTaskId(null);
-    setEditValue("");
+    setEditingTask(null);
+    setEditedText("");
   };
 
   return (
-    <div className="todolist-container">
-      <form className="form-style" onSubmit={handleAddTask}>
-        <input
-          className="input-text"
-          type="text"
-          value={inputValue}
-          placeholder="Scrivi il tuo task..."
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-        <CustomButton type="submit">
-          aggiungi
-        </CustomButton>
-      </form>
-
-      <div className="tasks-list">
-        {tasks.map((task) => (
-          <div key={task.id} className="task-item">
-            {/* Se il task è in fase di modifica, mostra un input */}
-            {editingTaskId === task.id ? (
-              <div className="task-left">
-                <input
-                  type="checkbox"
-                  checked={task.done}
-                  onChange={() => handleToggleDone(task.id)}
-                />
-                <input
-                  className="edit-input"
-                  value={editValue}
-                  onChange={(e) => setEditValue(e.target.value)}
-                />
-              </div>
-            ) : (
-              <div className="task-left">
-                <input
-                  type="checkbox"
-                  checked={task.done}
-                  onChange={() => handleToggleDone(task.id)}
-                />
-                <span className={`task-text ${task.done ? "done" : ""}`}>
-                  {task.text}
-                </span>
-              </div>
-            )}
-
-            {/* Pulsante "modifica" o "salva" */}
-            {editingTaskId === task.id ? (
-              <CustomButton
-                onClick={() => handleSaveTask(task.id)}
-              >
-                salva
-              </CustomButton>
-            ) : (
-              <CustomButton
-                onClick={() => handleEditTask(task.id)}
-              >
-                modifica
-              </CustomButton>
-            )}
-          </div>
-        ))}
+    <div className="p-4">
+      <h2 className="text-xl font-bold mb-4">To-Do List - {selectedDate}</h2>
+      <div className="mb-4">
+        <h3 className="font-semibold">Aggiungi Task Programmata</h3>
+        <form onSubmit={handleAddTaskProgrammata} className="mt-2 flex gap-2">
+          <input
+            type="text"
+            value={newTaskProgrammata}
+            onChange={(e) => setNewTaskProgrammata(e.target.value)}
+            placeholder="Nome task..."
+            className="border rounded p-1 flex-1"
+          />
+          <input
+            type="date"
+            value={taskDate}
+            onChange={(e) => setTaskDate(e.target.value)}
+            className="border rounded p-1"
+          />
+          <button type="submit" className="bg-green-500 text-white px-4 py-1 rounded">
+            Aggiungi
+          </button>
+        </form>
       </div>
+
+      {calendario.map((day) =>
+        day.data === selectedDate ? (
+          <ul key={day.data}>
+            {day.taskProgrammate.map((task) => (
+              <li key={task.id} className="flex items-center gap-2">
+                {editingTask?.id === task.id ? (
+                  <input
+                    type="text"
+                    value={editedText}
+                    onChange={(e) => setEditedText(e.target.value)}
+                    className="border rounded p-1"
+                  />
+                ) : (
+                  <span>{task.text}</span>
+                )}
+                {editingTask?.id === task.id ? (
+                  <button onClick={handleSaveTask} className="bg-blue-500 text-white px-2 py-1 rounded">
+                    Salva
+                  </button>
+                ) : (
+                  <button onClick={() => handleEditTask(task)} className="bg-yellow-500 text-white px-2 py-1 rounded">
+                    Modifica
+                  </button>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : null
+      )}
     </div>
   );
 };
