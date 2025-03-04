@@ -12,10 +12,18 @@ const PORT = process.env.PORT || 5000;
 
 connectDB();
 
-app.use(cors({
-    origin: "https://jasminarotella.vercel.app", // ⚠️ Sostituisci con il tuo dominio frontend
-    credentials: true, // Necessario se usi autenticazione/cookie
-}));
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://jasminarotella.vercel.app");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header("Access-Control-Allow-Credentials", "true");
+
+    if (req.method === "OPTIONS") {
+        return res.sendStatus(200);
+    }
+    next();
+});
+
 app.use(express.json());
 
 // ✅ Importa la route utenti
