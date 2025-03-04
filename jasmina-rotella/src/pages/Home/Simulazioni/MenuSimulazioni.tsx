@@ -10,7 +10,7 @@ export const MenuSimulazioni: React.FC = () => {
       <Link to="/offertedilavoro">
         <CustomButton className="button-jas">Offerte di Lavoro</CustomButton>
       </Link>
-      <Link to="/#">
+      <Link to="/esamistudenti">
         <CustomButton className="button-jas">Esami e Studenti</CustomButton>
       </Link>
       <Link to="/#">

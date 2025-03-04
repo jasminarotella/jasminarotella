@@ -16,6 +16,7 @@ import RimuoviOfferta from './pages/Home/Simulazioni/OfferteDiLavoro/rimuoviOffe
 import MainHome from './pages/MainHome.tsx';
 import LoginForm from './pages/Home/components/LoginForm.tsx';
 import JasHome from './pages/PersonalHome/JasHome.tsx';
+import HomeEsamiStudenti from './pages/Home/Simulazioni/EsamiStudenti/homeEsamiStudenti.tsx';
 
 interface FormData {
   id: number;
@@ -45,6 +46,7 @@ function App() {
           <Route path="/rimuoviofferta" element={<RimuoviOfferta />} />
           <Route path="/loginform" element={<LoginForm />} />
           <Route path="/jashome" element={<JasHome />} />
+          <Route path="/esamistudenti" element={<HomeEsamiStudenti />} />
         </Routes>
       </Router>
     </div>
