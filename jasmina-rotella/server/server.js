@@ -12,7 +12,10 @@ const PORT = process.env.PORT || 5000;
 
 connectDB();
 
-app.use(cors());
+app.use(cors({
+    origin: "https://jasminarotella.vercel.app", // ⚠️ Sostituisci con il tuo dominio frontend
+    credentials: true, // Necessario se usi autenticazione/cookie
+}));
 app.use(express.json());
 
 // ✅ Importa la route utenti
